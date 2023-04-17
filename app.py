@@ -1,6 +1,7 @@
 from re import I
 from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
+import bcrypt
 
 app = Flask(__name__)
 
@@ -24,6 +25,13 @@ def runStatement(statement):
 def verifyUser(username, password):
     corrPass = runStatement('''SELECT password FROM users WHERE username=''' + username)
     return not (not corrPass or corrPass != password)
+
+
+def hash_password(password):
+    return bcrypt.hashpw(password, bcrypt.gensalt())
+
+def check_password(password, hashed_password):
+    return bcrypt.checkpw(password, hashed_password)
 
 # Default route
 @app.route("/")
