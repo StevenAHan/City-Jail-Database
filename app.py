@@ -21,13 +21,15 @@ def runStatement(statement):
     return results
 
 
+def verifyUser(username, password):
+    corrPass = runStatement('''SELECT password FROM users WHERE username=''' + username)
+    return not (not corrPass or corrPass != password)
 
 # Default route
 @app.route("/")
 def index():
     print(runStatement('''SELECT * FROM criminals'''))
     return render_template("index.html")
-
 
 # Add routes here:
     
