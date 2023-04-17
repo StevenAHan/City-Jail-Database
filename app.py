@@ -1,14 +1,23 @@
 from re import I
-from flask import Flask, render_template, request, url_for, flash, redirect, make_response
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import func
-import os
-import pandas as pd
-import matplotlib
-import matplotlib.pyplot as plt
-from sqlalchemy import create_engine
+from flask import Flask, render_template, request
+from flask_mysqldb import MySQL
 
 app = Flask(__name__)
+
+ 
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'flask'
+ 
+mysql = MySQL(app)
+
+def insertAlias(criminal_id, alias):
+    cursor = mysql.connection.cursor()
+    cursor.execute(''' INSERT INTO Aliases VALUES({criminal_id},{alias}) ''')
+    mysql.connection.commit()
+    cursor.close()
+
 
 
 # Default route
