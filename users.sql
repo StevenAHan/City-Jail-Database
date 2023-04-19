@@ -13,4 +13,12 @@ INSERT INTO users VALUES("srikar", "abc", "A");
 
 INSERT INTO users VALUES("normal", "user", "V");
 
--- 
+-- DB security
+
+CREATE ROLE viewer;
+
+GRANT SELECT ON * TO viewer;
+
+CREATE ROLE moderator;
+
+GRANT ALL PRIVILEGES ON * TO moderator;

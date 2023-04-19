@@ -17,6 +17,7 @@ app.config['MYSQL_DB'] = 'cityjail'
  
 mysql = MySQL(app)
 
+# Functions for obtaining db information and verifying user
 def runStatement(statement):
     cursor = mysql.connection.cursor()
     cursor.execute(statement)
@@ -52,17 +53,20 @@ def addAlias(criminal_id, alias):
 @norm.route("/")
 def index():
     print(runStatement('''SELECT * FROM criminals'''))
-    return render_template("index.html")
+    return render_template("home.html")
 
+# route for authenticated user
 @auth.route("/")
 @login_required
 def home():
     return render_template("logged_home.html")
 
+# login page
 @norm.route("/login")
 def login():
     return render_template("login.html")
 
+# When user attempts login
 @norm.route('/login', methods=['POST'])
 def login_post():
     if(request.method == "POST"):
