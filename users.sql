@@ -22,3 +22,7 @@ GRANT SELECT ON * TO viewer;
 CREATE ROLE moderator;
 
 GRANT ALL PRIVILEGES ON * TO moderator;
+
+CREATE ROLE editor;
+
+GRANT SELECT INSERT ALTER ON * TO editor;

@@ -1,13 +1,13 @@
 from re import I
 from flask import Flask, render_template, request, Blueprint, redirect, url_for
-from flask_login import login_user, login_required, current_user, logout_user
+from flask_login import login_user, login_required, current_user, logout_user, LoginManager
 from flask_mysqldb import MySQL
 import bcrypt
 import pandas as pd
 
 app = Flask(__name__)
 
-auth = Blueprint("auth", __name__)
+login_manager = LoginManager(app)
  
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -15,6 +15,43 @@ app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'cityjail'
  
 mysql = MySQL(app)
+
+class User:
+
+    __hash__ = object.__hash__
+
+    @property
+    def is_active(self):
+        return True
+
+    @property
+    def is_authenticated(self):
+        return self.is_active
+
+    @property
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        try:
+            return str(self.id)
+        except AttributeError:
+            raise NotImplementedError("No `id` attribute - override `get_id`") from None
+
+    def __eq__(self, other):
+        if isinstance(other, User):
+            return self.get_id() == other.get_id()
+        return NotImplemented
+
+    def __ne__(self, other):
+        equal = self.__eq__(other)
+        if equal is NotImplemented:
+            return NotImplemented
+        return not equal
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
 
 # Functions for obtaining db information and verifying user. Will return a dataframe of the results
 def runStatement(statement):
@@ -53,11 +90,10 @@ def addAlias(criminal_id, alias):
 @app.route("/")
 def index():
     crim = runStatement("SELECT * FROM criminals")
-    print(crim)
-    return render_template("home.html", tables=[crim.to_html(classes='data')])
+    return render_template("home.html", tables=[crim.to_html(classes='data')], crim=crim)
 
 # route for authenticated user
-@auth.route("/")
+@app.route("/hi")
 @login_required
 def home():
     return render_template("logged_home.html")
@@ -80,7 +116,7 @@ def login_post():
             return render_template("login.html", error="Username or Password is Incorrect, try again!")
 
 # When searching for a criminal
-@auth.route("/criminals/<string:criminal_id>")
+@app.route("/criminals/<string:criminal_id>")
 @login_required
 def showCriminal(criminal_id):
     return render_template("criminal.html", data=runStatement("SELECT * FROM criminals WHERE criminal_id=" + criminal_id))
