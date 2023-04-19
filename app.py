@@ -1,5 +1,5 @@
 from re import I
-from flask import Flask, render_template, request, Blueprint
+from flask import Flask, render_template, request, Blueprint, redirect, url_for
 from flask_login import login_user, login_required, current_user
 from flask_mysqldb import MySQL
 import bcrypt
@@ -54,7 +54,6 @@ def index():
     print(runStatement('''SELECT * FROM criminals'''))
     return render_template("index.html")
 
-# Add routes here:
 @auth.route("/")
 @login_required
 def home():
@@ -66,9 +65,19 @@ def login():
 
 @norm.route('/login', methods=['POST'])
 def login_post():
-    if(method == "POST"):
-        if(verifyUser())
-    return redirect(url_for('main.profile'))
+    if(request.method == "POST"):
+        username = request.form.get('username')
+        password = request.form.get('password')
+        if(verifyUser(username, password)[0]):
+            login_user(verifyUser(username,password)[1])
+            return redirect(url_for('auth.home'))
+        else:
+            return render_template("login.html", error="Username or Password is Incorrect, try again!")
+
+@auth.route("/criminals/<string:criminal_id>")
+@login_required
+def showCriminal(criminal_id):
+    return render_template("criminal.html", data=runStatement("SELECT * FROM criminals WHERE criminal_id=" + criminal_id))
     
 if __name__ == "__main__":
     app.run(debug=True)
