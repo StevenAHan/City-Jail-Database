@@ -1,4 +1,9 @@
 {% block content %} 
 <h1>Sample!</h1>
 <p>This is an example of using a backend vaiable: {{exampleVar}}</p>
+
+<p>Displaying Criminal Data:</p>
+    {% for table in tables %}
+                {{ table|safe }}
+    {% endfor %}
 {% endblock %}
