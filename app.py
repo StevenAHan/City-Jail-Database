@@ -92,6 +92,7 @@ def addAlias(criminal_id, alias):
 @app.route("/")
 def index():
     crim = runStatement("SELECT * FROM criminals")
+    print(crim)
     return render_template("home.html", tables=[crim.to_html(classes='data')], data=crim)
 
 # login page
@@ -121,6 +122,8 @@ def showCriminal(criminal_id):
 def logout():
     logout_user()
     return redirect("/")
+
+
     
 if __name__ == "__main__":
     app.run(debug=True)
