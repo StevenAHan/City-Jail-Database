@@ -6,7 +6,7 @@ import bcrypt
 import pandas as pd
 
 app = Flask(__name__)
-
+# hello
 login_manager = LoginManager(app)
  
 app.config['MYSQL_HOST'] = 'localhost'
