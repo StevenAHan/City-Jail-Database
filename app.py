@@ -94,12 +94,6 @@ def index():
     crim = runStatement("SELECT * FROM criminals")
     return render_template("home.html", tables=[crim.to_html(classes='data')], data=crim)
 
-# route for authenticated user
-@app.route("/hi")
-@login_required
-def home():
-    return render_template("logged_home.html")
-
 # login page
 @app.route("/login")
 def login():
