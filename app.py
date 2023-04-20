@@ -85,12 +85,14 @@ def removeAlias(criminial_id, alias):
 def addAlias(criminal_id, alias):
     runStatement("INSERT INTO Aliases VALUES(%s,%s)", criminal_id, alias)
 
+# def changeCriminalName(criminal_id, newFirst, newLast):
+#     runStatement(f"UPDATE Criminals SET First="{newFirst}" AND Last="{newLast}" WHERE Criminal_ID="{criminal_id}"")
 
 # Default route
 @app.route("/")
 def index():
     crim = runStatement("SELECT * FROM criminals")
-    return render_template("home.html", tables=[crim.to_html(classes='data')], crim=crim)
+    return render_template("home.html", tables=[crim.to_html(classes='data')], data=crim)
 
 # route for authenticated user
 @app.route("/hi")
