@@ -7,40 +7,33 @@
     <title>City Jail Database</title>
   </head>
   <body>
-    <p>Criminals</p>
-    <p>Criminal ID: {{data.Criminal_ID[0]}}</p>
-    <p>Name: </p>
-    <p>Address: </p>
-    <p>Phone:  </p>
+    <p>Crimes</p>
+    <p>Crime ID: {{data.Crime_ID[0]}}</p>
+    <p>Associated Criminal:{{data.Criminal_ID[0]}} </p>
+    <p>Classification</p>
+    <p>Date Charged: </p>
+    <p>Status: </p>
     <p>Hearing Date: </p>
     <p>Appeal Cutoff Date: </p>
-    <label for="my-dropdown">Associated Crimes</label>
+    <label for="my-dropdown">Associated Charges</label>
     <select id="my-dropdown" name="my-dropdown">
       <option value="option1">Option 1</option>
       <option value="option2">Option 2</option>
       <option value="option3">Option 3</option>
     </select>
-    <label for="my-dropdown2">Associated Sentances</label>
+    <label for="my-dropdown2">Associated Officers</label>
     <select id="my-dropdown2" name="my-dropdown2">
       <option value="option1">Option 1</option>
       <option value="option2">Option 2</option>
       <option value="option3">Option 3</option>
     </select>
-    <label for="my-dropdown3">Aliases</label>
+    <label for="my-dropdown3">Associated Appeals</label>
     <select id="my-dropdown3" name="my-dropdown3">
       <option value="option1">Option 1</option>
       <option value="option2">Option 2</option>
       <option value="option3">Option 3</option>
     </select>
-    <label for="yes-no-checkbox">Violent Offender Status:</label>
-    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox">
-    <label for="yes-no-checkbox" value="yes">Yes</label>
-    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox">
-    <label for="yes-no-checkbox" value="no">No</label>
-    <label for="yes-no-checkbox2">Probation Status:</label>
-    <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2">
-    <label for="yes-no-checkbox2" value="yes">Yes</label>
-    <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2">
-    <label for="yes-no-checkbox2" value="no">No</label>
   </body>
 </html>
+
+

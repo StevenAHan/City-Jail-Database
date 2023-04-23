@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>City Jail Database</title>
+  </head>
+  <body>
+    <p>Sentances: </p>
+    <p>Associated Criminal: </p>
+    <p>Start Date</p>
+    <p>Violations  </p>
+    <p>End Date:  </p>
+    <p>Associated Probation Officer: </p>
+    <label for="my-dropdown">Associated Sentances</label>
+    <select id="my-dropdown" name="my-dropdown">
+      <option value="option1">Option 1</option>
+      <option value="option2">Option 2</option>
+      <option value="option3">Option 3</option>
+    </select>
+    
+    <label for="yes-no-checkbox">Sentance Type</label>
+    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox">
+    <label for="yes-no-checkbox" value="Active">Jail Period</label>
+    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox">
+    <label for="yes-no-checkbox" value="Inactive">House Arrest</label>
+    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox">
+    <label for="yes-no-checkbox" value="Inactive">Probation</label>
+
+  </body>
+</html>
