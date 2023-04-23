@@ -114,7 +114,7 @@ def login_post():
 
 # When searching for a criminal
 @app.route("/criminals/<string:criminal_id>")
-@login_required
+# @login_required
 def showCriminal(criminal_id):
     return render_template("criminal.html", data=runStatement("SELECT * FROM criminals WHERE criminal_id=" + criminal_id))
 
