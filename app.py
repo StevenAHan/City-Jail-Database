@@ -125,6 +125,11 @@ def logout():
     logout_user()
     return redirect("/")
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    if request.method=="POST":
+        requestsearch-type
+
 
     
 if __name__ == "__main__":

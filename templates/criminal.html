@@ -28,7 +28,6 @@
     </select>
     <label for="my-dropdown3">Aliases</label>
     <select id="my-dropdown3" name="my-dropdown3">
-      <option value="option1"></option>
       {% for alias in aliases.iterrows() %}
         <option>{{ alias[1][2] }}</option>
       {% endfor %}

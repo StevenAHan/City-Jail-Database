@@ -40,22 +40,17 @@
       criminals, police officers, or crimes.</p>
 
     <p ></p>
-    <label for="my-dropdown">What are you searching for:</label>
-    <select id="my-dropdown" name="my-dropdown">
-      <option value="option1">Option 1</option>
-      <option value="option2">Option 2</option>
-      <option value="option3">Option 3</option>
-    </select>
-    <form action="">
+    <form action="/search", method="POST">
+      <label for="search-type">What are you searching for:</label>
+      <select id="search-type" name="search-type">
+        <option value="criminal">Criminal</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+      </select>
       <label for="input">Search the Database:</label>
-      <input type="text" >
-      
-  </form>
-  <button class="my-button">
-    Search
-    <span class="Search"></span>
-  </button>
-
+      <input type="text" name="search">
+      <input type="submit" value="search">
+    </form>
     
   </body>
 </html>
