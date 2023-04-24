@@ -147,7 +147,7 @@ def search():
                            + "<a>" + "<br>")
         results = " ".join(results)
         print(results)
-    return render_template("search.html", results=results)
+    return render_template("search.html", results=results, searchType=searchType)
 
 @app.route("/logout")
 @login_required
