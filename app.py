@@ -132,10 +132,13 @@ def search():
         search = request.form["search"]
         searchType = request.form["search-type"]
         searchTypeDivided = searchType.split(",")
+        searchTypeDivided[1] = searchTypeDivided[1].capitalize()
         filteredResults = runStatement(f"SELECT * FROM {searchTypeDivided[0]} WHERE {searchTypeDivided[1]} LIKE '{search}%'")
 
-        for filteredResult in filteredResults.iterrows():
-            results.append(f"<a href={filteredResult[1][0]}>" + filteredResult[1][2] + "<a>" + "<br>")
+        for index, filteredResult in filteredResults.iterrows():
+            print(filteredResult)
+            results.append(f"<a href=/{searchTypeDivided[0]}/{filteredResult[0]}>" + filteredResult[searchTypeDivided[1]] 
+                           + "<a>" + "<br>")
         results = " ".join(results)
         print(results)
     return render_template("search.html", results=results)
