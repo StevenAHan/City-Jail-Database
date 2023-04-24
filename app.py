@@ -91,16 +91,14 @@ def changeCriminalName(criminal_id, newFirst, newLast):
 # Default route
 @app.route("/")
 def index():
-    crim = runStatement("SELECT * FROM criminals")
-    print(crim)
-    return render_template("login.html", tables=[crim.to_html(classes='data')], data=crim)
+    return render_template("login.html")
 
 @app.route("/home")
 # @login_required
 def home():
     crim = runStatement("SELECT * FROM criminals")
     print(crim)
-    return render_template("login.html", tables=[crim.to_html(classes='data')], data=crim)
+    return render_template("logged_home.html", tables=[crim.to_html(classes='data')], data=crim)
 
 # login page
 @app.route("/login")
@@ -135,7 +133,7 @@ def logout():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     if request.method=="POST":
-        return 
+        request.form[""]
 
     
 if __name__ == "__main__":
