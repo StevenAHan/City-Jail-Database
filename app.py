@@ -116,7 +116,9 @@ def login_post():
 @app.route("/criminals/<string:criminal_id>")
 # @login_required
 def showCriminal(criminal_id):
-    return render_template("criminal.html", data=runStatement("SELECT * FROM criminals WHERE criminal_id=" + criminal_id))
+    print(runStatement("SELECT * FROM Alias WHERE criminal_id=" + criminal_id))
+    return render_template("criminal.html", data=runStatement("SELECT * FROM criminals WHERE criminal_id=" + criminal_id), 
+                           aliases=runStatement("SELECT * FROM Alias WHERE criminal_id=" + criminal_id))
 
 @app.route("/logout")
 def logout():
