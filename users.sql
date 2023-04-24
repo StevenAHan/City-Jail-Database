@@ -2,19 +2,19 @@
 
 CREATE TABLE users(
     username VARCHAR(30),
-    password VARCHAR(100),
+    password VARCHAR(255),
     power CHAR(1),
     PRIMARY KEY(username, password)
 );
 
 -- 123
-INSERT INTO users VALUES("steven", "$2a$12$tqrZifSKi/0SCFtwuxG9e.Xvv/QDKrPfrdT9THZA2SF5IwIHg8/IK", "M");
+INSERT INTO users VALUES("steven", "$2b$12$SxHP6/PBf2ft5GlDb/rT6uEj5mYQ6kQ9bVYCeBGqXohrzYFQ.pTVu", "M");
 
 -- abc
-INSERT INTO users VALUES("srikar", "$2a$12$26oZUw1Vo8lokbHR474CDuHdI54K8l9Qq.PlBpF3UzSv9sTlMUR3u", "M");
+INSERT INTO users VALUES("srikar", "$2b$12$0bRlQUji0tFHwzvPxQ463.JeUmb3AXN7PSd6IJ737Mz.N4HmBut16", "M");
 
 -- user
-INSERT INTO users VALUES("normal", "$2a$12$N/oIjQEw1BBsMrd2empltuDN7IY46IfETipr/Z0j5.cC6jIDymUVe", "V");
+INSERT INTO users VALUES("normal", "$2b$12$dGSuTGp9oNWR50K240VY9.P6MDOHO6GTLq9/NYA2bw/Wcy5IMVq3i", "V");
 
 -- DB security - moderators can change anything, editors can edit data other than users, 
 --               viewers can view all non-users data, and outsiders cannot do anything
