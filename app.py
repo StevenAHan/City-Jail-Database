@@ -65,9 +65,10 @@ def runStatement(statement):
 
 
 def verifyUser(username, password):
-    corrPass = runStatement('''SELECT password FROM users WHERE username=''' + username)
-    user = runStatement('''SELECT password FROM users WHERE username=''' + username)
-    return (corrPass and checkPassword(password, corrPass), user)
+    data = runStatement(f'''SELECT username, password FROM users WHERE username="{username}"''')
+    corrPass = data.iloc[0]["password"]
+    user = data.iloc[0]["username"]
+    return (corrPass and checkPassword(password, hashPassword(corrPass)), user)
 
 
 def hashPassword(password):
@@ -94,32 +95,27 @@ def index():
     return render_template("login.html")
 
 @app.route("/home")
-# @login_required
+@login_required
 def home():
     crim = runStatement("SELECT * FROM criminals")
     print(crim)
     return render_template("logged_home.html", tables=[crim.to_html(classes='data')], data=crim)
 
-# login page
-@app.route("/login")
-def login():
-    return render_template("login.html")
-
 # When user attempts login
-@app.route('/login', methods=['POST'])
+@app.route('/', methods=['POST'])
 def login_post():
     if(request.method == "POST"):
         username = request.form.get('username')
         password = request.form.get('password')
         if(verifyUser(username, password)[0]):
             login_user(verifyUser(username,password)[1])
-            return redirect(url_for('auth.home'))
+            return redirect(url_for('home'))
         else:
             return render_template("login.html", error="Username or Password is Incorrect, try again!")
 
 # When searching for a criminal
 @app.route("/criminals/<string:criminal_id>")
-# @login_required
+@login_required
 def showCriminal(criminal_id):
     print(runStatement("SELECT * FROM Alias WHERE criminal_id=" + criminal_id))
     return render_template("criminal.html", data=runStatement("SELECT * FROM criminals WHERE criminal_id=" + criminal_id), 
