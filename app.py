@@ -86,7 +86,7 @@ def addAlias(criminal_id, alias):
     runStatement("INSERT INTO Aliases VALUES(%s,%s)", criminal_id, alias)
 
 def changeCriminalName(criminal_id, newFirst, newLast):
-    runStatement('UPDATE Criminals SET First="{newFirst}" AND Last="{newLast}" WHERE Criminal_ID="{criminal_id}"')
+    runStatement(f'UPDATE Criminals SET First="{newFirst}" AND Last="{newLast}" WHERE Criminal_ID="{criminal_id}"')
 
 # Default route
 @app.route("/")
@@ -125,15 +125,26 @@ def showCriminal(criminal_id):
     return render_template("criminal.html", data=runStatement("SELECT * FROM criminals WHERE criminal_id=" + criminal_id), 
                            aliases=runStatement("SELECT * FROM Alias WHERE criminal_id=" + criminal_id))
 
-@app.route("/logout")
-def logout():
-    logout_user()
-    return redirect("/")
-
 @app.route("/search", methods=["GET", "POST"])
 def search():
+    results = []
     if request.method=="POST":
-        request.form[""]
+        search = request.form["search"]
+        searchType = request.form["search-type"]
+        searchTypeDivided = searchType.split(",")
+        filteredResults = runStatement(f"SELECT * FROM {searchTypeDivided[0]} WHERE {searchTypeDivided[1]} LIKE '{search}%'")
+
+        for filteredResult in filteredResults.iterrows():
+            results.append(f"<a href={filteredResult[1][0]}>" + filteredResult[1][2] + "<a>" + "<br>")
+        results = " ".join(results)
+        print(results)
+    return render_template("search.html", results=results)
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("login"))
 
     
 if __name__ == "__main__":
