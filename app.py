@@ -4,6 +4,7 @@ from flask_login import login_user, login_required, current_user, logout_user, L
 from flask_mysqldb import MySQL
 import bcrypt
 import pandas as pd
+from functools import wraps
 
 app = Flask(__name__)
 # hello
@@ -52,6 +53,15 @@ class User:
 @login_manager.user_loader
 def load_user(user_id):
     return User.get(user_id)
+
+# if unauthorized, will automatically redirect user to login
+def login_required(func):
+    @wraps(func)
+    def decorated_view(*args, **kwargs):
+        if not current_user.is_authenticated:
+            return redirect("/")
+        return func(*args, **kwargs)
+    return decorated_view
 
 # Functions for obtaining db information and verifying user. Will return a dataframe of the results
 def runStatement(statement):
