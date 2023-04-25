@@ -84,8 +84,7 @@ def index():
 @login_required
 def home():
     crim = runStatement("SELECT * FROM criminals")
-    print(crim)
-    return render_template("logged_home.html", tables=[crim.to_html(classes='data')], data=crim)
+    return render_template("logged_home.html", tables=[crim.to_html(classes='data')], data=crim, power=current_user.get_power())
 
 # When user attempts login
 @app.route('/', methods=['POST'])
@@ -109,7 +108,8 @@ def login_post():
 def showCriminal(criminal_id):
     print(runStatement("SELECT * FROM Alias WHERE criminal_id=" + criminal_id))
     return render_template("criminal.html", data=runStatement("SELECT * FROM criminals WHERE criminal_id=" + criminal_id), 
-                           aliases=runStatement("SELECT * FROM Alias WHERE criminal_id=" + criminal_id))
+                           aliases=runStatement("SELECT * FROM Alias WHERE criminal_id=" + criminal_id),
+                           power=current_user.get_power())
 
 # to search
 @app.route("/search", methods=["GET", "POST"])
