@@ -1,5 +1,5 @@
 from re import I
-from flask import Flask, render_template, request, Blueprint, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for
 from flask_login import login_user, login_required, current_user, logout_user, LoginManager, UserMixin
 from flask_mysqldb import MySQL
 import bcrypt
