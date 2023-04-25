@@ -106,7 +106,6 @@ def login_post():
 @app.route("/criminals/<string:criminal_id>")
 @login_required
 def showCriminal(criminal_id):
-    print(runStatement("SELECT * FROM Alias WHERE criminal_id=" + criminal_id))
     return render_template("criminal.html", data=runStatement("SELECT * FROM criminals WHERE criminal_id=" + criminal_id), 
                            aliases=runStatement("SELECT * FROM Alias WHERE criminal_id=" + criminal_id),
                            power=current_user.get_power())
@@ -124,11 +123,9 @@ def search():
         filteredResults = runStatement(f"SELECT * FROM {searchTypeDivided[0]} WHERE {searchTypeDivided[1]} LIKE '{search}%'")
 
         for index, filteredResult in filteredResults.iterrows():
-            print(filteredResult)
             results.append(f"<a href=/{searchTypeDivided[0]}/{filteredResult[0]}>" + filteredResult[searchTypeDivided[1]] 
                            + "<a>" + "<br>")
         results = " ".join(results)
-        print(results)
     return render_template("search.html", results=results, searchType=searchTypeDivided[0])
 
 #to logout
