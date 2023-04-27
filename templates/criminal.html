@@ -9,16 +9,16 @@
   <body>
     <p>Criminals</p>
     <p>Criminal ID: {{data.Criminal_ID[0]}}</p>
-    <p>Name: </p>
-    <p>Address: </p>
-    <p>Phone:  </p>
-    <p>Hearing Date: </p>
-    <p>Appeal Cutoff Date: </p>
+    <p>Name: {{data.Name}}</p>
+    <p>Address: {{data.Address}}</p>
+    <p>Phone:  {{data.Phone}}</p>
+    <p>Hearing Date: {{data.Hearing_date}}</p>
+    <p>Appeal Cutoff Date: {{data.Appeal_cut_date}}</p>
     <label for="my-dropdown">Associated Crimes</label>
     <select id="my-dropdown" name="my-dropdown">
-      <option value="option1">Option 1</option>
-      <option value="option2">Option 2</option>
-      <option value="option3">Option 3</option>
+      {% for crime in crimes.iterrows() %}
+      <option>{{ crime[1][2] }}</option>
+    {% endfor %}
     </select>
     <label for="my-dropdown2">Associated Sentances</label>
     <select id="my-dropdown2" name="my-dropdown2">
