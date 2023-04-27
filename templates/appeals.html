@@ -8,10 +8,10 @@
   </head>
   <body>
     <p>Appeals</p>
-    <p>Appeal ID: </p>
-    <p>Associated Crime:  </p>
-    <p>Filing Date:   </p>
-    <p>Hearing Date:  </p>
+    <p>Appeal ID: {{data.Appeal_ID[0]}}</p>
+    <p>Associated Crime:  {{data.Crime_ID[0]}}</p>
+    <p>Filing Date:   {{data.Filing_date[0]}}</p>
+    <p>Hearing Date:  {{data.Hearing_date[0]}}</p>
     <label for="yes-no-checkbox">Status</label>
     <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox">
     <label for="yes-no-checkbox" value="Active">Pending</label>

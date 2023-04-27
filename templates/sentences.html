@@ -7,12 +7,13 @@
     <title>City Jail Database</title>
   </head>
   <body>
-    <p>Sentences: </p>
-    <p>Associated Criminal: </p>
-    <p>Start Date</p>
-    <p>Violations  </p>
-    <p>End Date:  </p>
-    <p>Associated Probation Officer: </p>
+    <p>Sentance</p>
+    <p>Sentences: {{data.Sentance_ID[0]}}</p>
+    <p>Associated Criminal: {{data.Criminal_ID[0]}}</p>
+    <p>Start Date: {{data.Start_date[0]}}</p>
+    <p>Violations: {{data.Violations[0]}}  </p>
+    <p>End Date:  {{data.End_date}}</p>
+    <p>Associated Probation Officer: {{data.Prob_ID[0]}}</p>
     <label for="my-dropdown">Associated Sentences</label>
     <select id="my-dropdown" name="my-dropdown">
       <option value="option1">Option 1</option>
