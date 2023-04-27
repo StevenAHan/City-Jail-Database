@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>City Jail Database</title>
+    <style>
+      p.title{
+        font-weight: bold;
+        font-size: 50px;
+        text-align: center;
+      }
+      p.desc{
+        font-weight: bold;
+        font-size: 30px;
+        text-align: center;
+        margin-bottom: 100px;
+      }
+      select {
+        background-color: #f1f1f1;
+        border: none;
+        color: #333;
+        font-size: 16px;
+        padding: 10px 20px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url('dropdown-arrow.png');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Insert a navbar that also tells user what level of power they have (viewing / editing) -->
+    <p class ="title">Criminal Database</p>
+    <p class="desc" >This is a crime database. Use the search bar below to get information on 
+      criminals, police officers, or crimes.</p>
+
+    <p ></p>
+    <form action="/search", method="POST">
+      <label for="search-type">What are you searching for:</label>
+      <select id="search-type" name="search-type">
+        <option value="criminals,First">Criminal</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+      </select>
+      <label for="input">Search the Database:</label>
+      <input type="text" name="search">
+      <input type="submit" value="search">
+    </form>
+    
+  </body>
+</html>

@@ -1,1 +1,16 @@
-<a href="/criminals/{{driminal_id}}"></a>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>City Jail Database</title>
+  </head>
+    <body>
+      Who you are searching for: {{searchType}}
+        <h1>Search Results: </h1>
+        {{results|safe}}
+    </body>
+</html>
+
+

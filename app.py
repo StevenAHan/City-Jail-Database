@@ -1,13 +1,14 @@
 from re import I
-from flask import Flask, render_template, request, Blueprint, redirect, url_for
-from flask_login import login_user, login_required, current_user, logout_user, LoginManager
+from flask import Flask, render_template, request, redirect, url_for
+from flask_login import login_user, login_required, current_user, logout_user, LoginManager, UserMixin
 from flask_mysqldb import MySQL
 import bcrypt
 import pandas as pd
+from functools import wraps
 
 app = Flask(__name__)
-# hello
 login_manager = LoginManager(app)
+app.secret_key = 'my_secret_key'
  
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -16,42 +17,34 @@ app.config['MYSQL_DB'] = 'cityjail'
  
 mysql = MySQL(app)
 
-class User:
+class User(UserMixin):
+    def __init__(self, username, power, id=None):
+        self.id = id
+        self.username = username
+        self.power = power
 
-    __hash__ = object.__hash__
-
-    @property
-    def is_active(self):
-        return True
-
-    @property
-    def is_authenticated(self):
-        return self.is_active
-
-    @property
-    def is_anonymous(self):
-        return False
-
-    def get_id(self):
-        try:
-            return str(self.id)
-        except AttributeError:
-            raise NotImplementedError("No `id` attribute - override `get_id`") from None
-
-    def __eq__(self, other):
-        if isinstance(other, User):
-            return self.get_id() == other.get_id()
-        return NotImplemented
-
-    def __ne__(self, other):
-        equal = self.__eq__(other)
-        if equal is NotImplemented:
-            return NotImplemented
-        return not equal
+    def get_power(self):
+        return self.power
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.get(user_id)
+    if not user_id:
+        return None
+    else:
+        data = runStatement(f'''SELECT * FROM users WHERE username="{user_id}"''')
+        user = None
+        if len(data) > 0:
+            user = User(username=data.iloc[0]["username"], power=data.iloc[0]["power"], id=data.iloc[0]["username"])
+        return user
+
+# if unauthorized, will automatically redirect user to login
+def login_required(func):
+    @wraps(func)
+    def decorated_view(*args, **kwargs):
+        if not current_user.is_authenticated:
+            return redirect("/")
+        return func(*args, **kwargs)
+    return decorated_view
 
 # Functions for obtaining db information and verifying user. Will return a dataframe of the results
 def runStatement(statement):
@@ -64,17 +57,11 @@ def runStatement(statement):
     return df
 
 
-def verifyUser(username, password):
-    corrPass = runStatement('''SELECT password FROM users WHERE username=''' + username)
-    user = runStatement('''SELECT password FROM users WHERE username=''' + username)
-    return (corrPass and checkPassword(password, corrPass), user)
-
-
 def hashPassword(password):
-    return bcrypt.hashpw(password, bcrypt.gensalt())
+    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
 def checkPassword(password, hashed_password):
-    return bcrypt.checkpw(password, hashed_password)
+    return bcrypt.checkpw(password.encode('utf-8'), hashed_password.encode('utf-8'))
 
 def addUser(username, password, security_level):
     runStatement('''INSERT INTO users VALUES(%s,%s,%s)''', username, password, security_level)
@@ -85,51 +72,68 @@ def removeAlias(criminial_id, alias):
 def addAlias(criminal_id, alias):
     runStatement("INSERT INTO Aliases VALUES(%s,%s)", criminal_id, alias)
 
-# def changeCriminalName(criminal_id, newFirst, newLast):
-#     runStatement(f"UPDATE Criminals SET First="{newFirst}" AND Last="{newLast}" WHERE Criminal_ID="{criminal_id}"")
+def changeCriminalName(criminal_id, newFirst, newLast):
+    runStatement(f'UPDATE Criminals SET First="{newFirst}" AND Last="{newLast}" WHERE Criminal_ID="{criminal_id}"')
 
 # Default route
 @app.route("/")
 def index():
-    crim = runStatement("SELECT * FROM criminals")
-    print(crim)
-    return render_template("home.html", tables=[crim.to_html(classes='data')], data=crim)
-
-# login page
-@app.route("/login")
-def login():
     return render_template("login.html")
 
+@app.route("/home")
+@login_required
+def home():
+    crim = runStatement("SELECT * FROM criminals")
+    return render_template("logged_home.html", tables=[crim.to_html(classes='data')], data=crim, power=current_user.get_power())
+
 # When user attempts login
-@app.route('/login', methods=['POST'])
+@app.route('/', methods=['POST'])
 def login_post():
     if(request.method == "POST"):
         username = request.form.get('username')
         password = request.form.get('password')
-        if(verifyUser(username, password)[0]):
-            login_user(verifyUser(username,password)[1])
-            return redirect(url_for('auth.home'))
+        data = runStatement(f'''SELECT username, password, power FROM users WHERE username="{username}"''')
+        if len(data) == 0:
+            return render_template("login.html", error="Username or Password is Incorrect, try again!")
+        elif checkPassword(password, data.iloc[0]["password"]):
+            user = User(username=data.iloc[0]["username"], power=data.iloc[0]["power"], id=data.iloc[0]["username"])
+            login_user(user)
+            return redirect(url_for('home'))
         else:
             return render_template("login.html", error="Username or Password is Incorrect, try again!")
 
-# When searching for a criminal
+# When getting a criminal's information
 @app.route("/criminals/<string:criminal_id>")
-# @login_required
+@login_required
 def showCriminal(criminal_id):
-    print(runStatement("SELECT * FROM Alias WHERE criminal_id=" + criminal_id))
     return render_template("criminal.html", data=runStatement("SELECT * FROM criminals WHERE criminal_id=" + criminal_id), 
-                           aliases=runStatement("SELECT * FROM Alias WHERE criminal_id=" + criminal_id))
+                           aliases=runStatement("SELECT * FROM Alias WHERE criminal_id=" + criminal_id),
+                           power=current_user.get_power())
 
+# to search
+@app.route("/search", methods=["GET", "POST"])
+@login_required
+def search():
+    results = []
+    if request.method=="POST":
+        search = request.form["search"]
+        searchType = request.form["search-type"]
+        searchTypeDivided = searchType.split(",")
+        searchTypeDivided[1] = searchTypeDivided[1].capitalize()
+        filteredResults = runStatement(f"SELECT * FROM {searchTypeDivided[0]} WHERE {searchTypeDivided[1]} LIKE '{search}%'")
+
+        for index, filteredResult in filteredResults.iterrows():
+            results.append(f"<a href=/{searchTypeDivided[0]}/{filteredResult[0]}>" + filteredResult[searchTypeDivided[1]] 
+                           + "<a>" + "<br>")
+        results = " ".join(results)
+    return render_template("search.html", results=results, searchType=searchTypeDivided[0])
+
+#to logout
 @app.route("/logout")
+@login_required
 def logout():
     logout_user()
-    return redirect("/")
-
-@app.route("/search", methods=["GET", "POST"])
-def search():
-    if request.method=="POST":
-        requestsearch-type
-
+    return redirect(url_for("login"))
 
     
 if __name__ == "__main__":
