@@ -112,6 +112,17 @@ def showCriminal(criminal_id):
                            sentences=runStatement("SELECT * FROM Sentences WHERE criminal_id=" + criminal_id),
                            power=current_user.get_power())
 
+
+#Officer Information
+@app.route("/officers/<string:officer_id>")
+@login_required
+def showOfficer(officer_id):
+    return render_template("criminal.html", data=runStatement("SELECT * FROM officers WHERE officer_id=" + officer_id), 
+                           sentences=runStatement("SELECT * FROM Sentences WHERE officer_id=" + officer_id),
+                           power=current_user.get_power())
+
+
+
 # to search
 @app.route("/search", methods=["GET", "POST"])
 @login_required
