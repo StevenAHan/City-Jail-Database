@@ -120,6 +120,31 @@ def showOfficer(officer_id):
     return render_template("officer.html", data=runStatement("SELECT * FROM officers WHERE officer_id=" + officer_id), 
                            crimes=runStatement("SELECT * FROM Crimes WHERE prob_id=" + prob_id),
                            power=current_user.get_power())
+#Appeals Information
+@app.route("/appeals/<string:appeal_id>")
+@login_required
+def showAppeals(appeals_id):
+    return render_template("appeals.html", data=runStatement("SELECT * FROM appeals WHERE appeal_id=" + appeal_id), 
+                           power=current_user.get_power())
+
+#Sentances Information
+@app.route("/sentences/<string:sentences_id>")
+@login_required
+def showSentence(sentence_id):
+    return render_template("sentences.html", data=runStatement("SELECT * FROM sentences WHERE sentence_id=" + sentence_id), 
+                           power=current_user.get_power())
+#Crime Information
+@app.route("/crime/<string:crime_id>")
+@login_required
+def showCrimes(crime_id):
+    return render_template("crime.html", data=runStatement("SELECT * FROM crime WHERE crime_id=" + crime_id), 
+                           power=current_user.get_power())
+#crimeCharge Information
+@app.route("/charges/<string:charge_id>")
+@login_required
+def showCharges(charge_id):
+    return render_template("crimeCharge.html", data=runStatement("SELECT * FROM crime_charges WHERE charge_id=" + charge_id), 
+                           power=current_user.get_power())
 
 #Probation Officer Information
 @app.route("/probationofficer/<string:prob_id>")
