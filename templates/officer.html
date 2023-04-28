@@ -15,9 +15,9 @@
     <p>Precinct: {{data.Precinct[0]}}</p>
     <label for="my-dropdown">Associated Crimes</label>
     <select id="my-dropdown" name="my-dropdown">
-      <option value="option1">Option 1</option>
-      <option value="option2">Option 2</option>
-      <option value="option3">Option 3</option>
+      {% for crime in crimes.iterrows() %}
+      <option>{{ crime[1][0] }}</option>
+    {% endfor %}
     </select>
     
     <label for="yes-no-checkbox">Statues</label>

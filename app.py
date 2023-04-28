@@ -117,11 +117,17 @@ def showCriminal(criminal_id):
 @app.route("/officers/<string:officer_id>")
 @login_required
 def showOfficer(officer_id):
-    return render_template("criminal.html", data=runStatement("SELECT * FROM officers WHERE officer_id=" + officer_id), 
-                           sentences=runStatement("SELECT * FROM Sentences WHERE officer_id=" + officer_id),
+    return render_template("officer.html", data=runStatement("SELECT * FROM officers WHERE officer_id=" + officer_id), 
+                           crimes=runStatement("SELECT * FROM Crimes WHERE prob_id=" + prob_id),
                            power=current_user.get_power())
 
-
+#Probation Officer Information
+@app.route("/probationofficer/<string:prob_id>")
+@login_required
+def showProbationOfficer(prob_id):
+    return render_template("probationOfficer.html", data=runStatement("SELECT * FROM prob_officer WHERE prob_id=" + prob_id), 
+                           sentences=runStatement("SELECT * FROM Sentences WHERE prob_id=" + prob_id),
+                           power=current_user.get_power())
 
 # to search
 @app.route("/search", methods=["GET", "POST"])
