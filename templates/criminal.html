@@ -9,22 +9,20 @@
   <body>
     <p>Criminals</p>
     <p>Criminal ID: {{data.Criminal_ID[0]}}</p>
-    <p>Name: {{data.Name[0]}}</p>
-    <p>Address: {{data.Address[0]}}</p>
+    <p>Name: {{data.First[0]}} {{data.Last[0]}}</p>
+    <p>Address: {{data.Street[0]}}, {{data.City[0]}}, {{data.State[0]}}, {{data.Zip[0]}}</p>
     <p>Phone:  {{data.Phone[0]}}</p>
-    <p>Hearing Date: {{data.Hearing_date[0]}}</p>
-    <p>Appeal Cutoff Date: {{data.Appeal_cut_date[0]}}</p>
     <label for="my-dropdown">Associated Crimes</label>
     <select id="my-dropdown" name="my-dropdown">
       {% for crime in crimes.iterrows() %}
-      <option>{{ crime[1][2] }}</option>
+      <option>{{ crime[1][0] }}</option>
     {% endfor %}
     </select>
-    <label for="my-dropdown2">Associated Sentances</label>
+    <label for="my-dropdown2">Associated Sentences</label>
     <select id="my-dropdown2" name="my-dropdown2">
-      <option value="option1">Option 1</option>
-      <option value="option2">Option 2</option>
-      <option value="option3">Option 3</option>
+      {% for sentence in sentences.iterrows() %}
+      <option>{{ sentence[1][0] }}</option>
+    {% endfor %}
     </select>
     <label for="my-dropdown3">Aliases</label>
     <select id="my-dropdown3" name="my-dropdown3">

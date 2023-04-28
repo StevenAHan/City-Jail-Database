@@ -108,6 +108,8 @@ def login_post():
 def showCriminal(criminal_id):
     return render_template("criminal.html", data=runStatement("SELECT * FROM criminals WHERE criminal_id=" + criminal_id), 
                            aliases=runStatement("SELECT * FROM Alias WHERE criminal_id=" + criminal_id),
+                           crimes=runStatement("SELECT * FROM Crimes WHERE criminal_id=" + criminal_id),
+                           sentences=runStatement("SELECT * FROM Sentences WHERE criminal_id=" + criminal_id),
                            power=current_user.get_power())
 
 # to search
