@@ -118,7 +118,6 @@ def showCriminal(criminal_id):
 @login_required
 def showOfficer(officer_id):
     return render_template("officer.html", data=runStatement("SELECT * FROM officers WHERE officer_id=" + officer_id), 
-                           crimes=runStatement("SELECT * FROM Crimes WHERE prob_id=" + prob_id),
                            power=current_user.get_power())
 #Appeals Information
 @app.route("/appeals/<string:appeal_id>")

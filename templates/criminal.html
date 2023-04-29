@@ -3,15 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/criminal.css') }}">
     <title>City Jail Database</title>
   </head>
   <body>
-    <p>Criminals</p>
-    <p>Criminal ID: {{data.Criminal_ID[0]}}</p>
-    <p>Name: {{data.First[0]}} {{data.Last[0]}}</p>
-    <p>Address: {{data.Street[0]}}, {{data.City[0]}}, {{data.State[0]}}, {{data.Zip[0]}}</p>
-    <p>Phone:  {{data.Phone[0]}}</p>
+    <a href= > <img class = "house-icon" src="../template/images/house.png"> </a>
+    <div><h1>Criminals</h1></div>
+    <p class = 'text'>Criminal ID: {{data.Criminal_ID[0]}}</p>
+    <p class = 'text'>Name: {{data.First[0]}} {{data.Last[0]}}</p>
+    <p class = 'text'>Address: {{data.Street[0]}}, {{data.City[0]}}, {{data.State[0]}}, {{data.Zip[0]}}</p>
+    <p class = 'text'>Phone:  {{data.Phone[0]}}</p>
     <label for="my-dropdown">Associated Crimes</label>
     <select id="my-dropdown" name="my-dropdown">
       {% for crime in crimes.iterrows() %}
