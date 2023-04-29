@@ -3,41 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login_home.css') }}">
     <title>City Jail Database</title>
-    <style>
-      p.title{
-        font-weight: bold;
-        font-size: 50px;
-        text-align: center;
-      }
-      p.desc{
-        font-weight: bold;
-        font-size: 30px;
-        text-align: center;
-        margin-bottom: 100px;
-      }
-      select {
-        background-color: #f1f1f1;
-        border: none;
-        color: #333;
-        font-size: 16px;
-        padding: 10px 20px;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background-image: url('dropdown-arrow.png');
-        background-repeat: no-repeat;
-        background-position: right 10px center;
-        cursor: pointer;
-      }
-    </style>
+   
   </head>
   <body>
     <!-- Insert a navbar that also tells user what level of power they have (viewing / editing) -->
-    <p class ="title">Criminal Database</p>
-    <p class="desc" >This is a crime database. Use the search bar below to get information on 
-      criminals, police officers, or crimes.</p>
+    <h1>Criminal Database</h1>
+    <h2>This is a crime database. Use the search bar below to get information on 
+      criminals, police officers, or crimes.</h2>
 
     <p ></p>
     <form action="/search", method="POST">

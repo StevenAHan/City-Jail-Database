@@ -1,49 +1,30 @@
-/* body styles */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-  margin: 0;
-  padding: 0;
+/* Set the container to a grid layout */
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
 }
 
-/* header styles */
-header {
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
-  text-align: center;
-}
-
-/* link styles */
-a {
-  text-decoration: none;
-  color: #333;
-}
-
-/* main styles */
-.main {
-  margin: 20px auto;
-  width: 80%;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-/* text styles */
+/* Style the criminal information in the left column */
 .text {
-  font-size: 16px;
+  font-size: 18px;
+  margin: 0;
 }
 
-/* dropdown styles */
-label, select {
-  font-size: 16px;
+/* Style the dropdowns in the right column */
+label {
   display: block;
   margin-bottom: 10px;
 }
-
-/* checkbox styles */
-input[type="checkbox"] {
-  display: inline-block;
-  margin-right: 5px;
+/* body {
+  background-color: blue;
+} */
+select {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 16px;
+  margin-bottom: 20px;
 }

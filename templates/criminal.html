@@ -7,29 +7,35 @@
     <title>City Jail Database</title>
   </head>
   <body>
-    <a href= > <img class = "house-icon" src="../template/images/house.png"> </a>
-    <div><h1>Criminals</h1></div>
-    <p class = 'text'>Criminal ID: {{data.Criminal_ID[0]}}</p>
-    <p class = 'text'>Name: {{data.First[0]}} {{data.Last[0]}}</p>
-    <p class = 'text'>Address: {{data.Street[0]}}, {{data.City[0]}}, {{data.State[0]}}, {{data.Zip[0]}}</p>
-    <p class = 'text'>Phone:  {{data.Phone[0]}}</p>
-    <label for="my-dropdown">Associated Crimes</label>
-    <select id="my-dropdown" name="my-dropdown">
-      {% for crime in crimes.iterrows() %}
-      <option>{{ crime[1][0] }}</option>
-    {% endfor %}
-    </select>
-    <label for="my-dropdown2">Associated Sentences</label>
-    <select id="my-dropdown2" name="my-dropdown2">
-      {% for sentence in sentences.iterrows() %}
-      <option>{{ sentence[1][0] }}</option>
-    {% endfor %}
-    </select>
-    <label for="my-dropdown3">Aliases</label>
-    <select id="my-dropdown3" name="my-dropdown3">
-      {% for alias in aliases.iterrows() %}
-        <option>{{ alias[1][2] }}</option>
-      {% endfor %}
+    <div class="container">
+      <div>
+        <h1>Criminals</h1>
+        <p class="text">Criminal ID: {{data.Criminal_ID[0]}}</p>
+        <p class="text">Name: {{data.First[0]}} {{data.Last[0]}}</p>
+        <p class="text">Address: {{data.Street[0]}}, {{data.City[0]}}, {{data.State[0]}}, {{data.Zip[0]}}</p>
+        <p class="text">Phone:  {{data.Phone[0]}}</p>
+      </div>
+      <div>
+        <label for="my-dropdown">Associated Crimes</label>
+        <select id="my-dropdown" name="my-dropdown">
+          {% for crime in crimes.iterrows() %}
+          <option>{{ crime[1][0] }}</option>
+          {% endfor %}
+        </select>
+        <label for="my-dropdown2">Associated Sentences</label>
+        <select id="my-dropdown2" name="my-dropdown2">
+          {% for sentence in sentences.iterrows() %}
+          <option>{{ sentence[1][0] }}</option>
+          {% endfor %}
+        </select>
+        <label for="my-dropdown3">Aliases</label>
+        <select id="my-dropdown3" name="my-dropdown3">
+          {% for alias in aliases.iterrows() %}
+            <option>{{ alias[1][2] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
     </select>
     <label for="yes-no-checkbox">Violent Offender Status:</label>
     <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox">

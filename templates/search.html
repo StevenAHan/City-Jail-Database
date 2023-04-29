@@ -3,14 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
     <title>City Jail Database</title>
   </head>
     <body>
       Who you are searching for: {{searchType}}
-        <h1>Search Results: </h1>
+        <h1 style="text-align: center">Search Results:</h1>
         {{results|safe}}
     </body>
 </html>
-
-
