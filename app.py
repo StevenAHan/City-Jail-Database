@@ -178,6 +178,11 @@ def logout():
     logout_user()
     return redirect(url_for("login"))
 
+@app.route("/criminals/<string:criminal_id>/addalias/<string:alias>")
+def deleteAlias(criminal_id, alias):
+    addAlias(criminal_id, alias)
+    return redirect(f"/criminal/{criminal_id}")
+
     
 if __name__ == "__main__":
     app.run(debug=True)
