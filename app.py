@@ -68,7 +68,7 @@ def checkPassword(password, hashed_password):
 
 
 def removeAlias(criminial_id, alias):
-    runStatement(f"DELETE FROM Alias WHERE criminal_id={criminial_id} AND alias={alias}")
+    runStatement(f"DELETE FROM Alias WHERE criminal_id={criminial_id} AND alias='{alias}'")
 
 def addAlias(criminal_id, alias):
     alias_ID = runStatement(f"SELECT alias_id FROM alias")["alias_id"].max()
@@ -107,9 +107,12 @@ def login_post():
             return render_template("login.html", error="Username or Password is Incorrect, try again!")
 
 # When getting a criminal's information
-@app.route("/criminals/<string:criminal_id>")
+@app.route("/criminals/<string:criminal_id>", methods=["GET", "POST"])
 @login_required
 def showCriminal(criminal_id):
+    if request.method == "POST":
+        removeAlias(criminal_id, request.form.get("dropdown"))
+        return redirect("/criminals/"+criminal_id)
     return render_template("criminal.html", data=runStatement("SELECT * FROM criminals WHERE criminal_id=" + criminal_id), 
                            aliases=runStatement("SELECT * FROM Alias WHERE criminal_id=" + criminal_id),
                            crimes=runStatement("SELECT * FROM Crimes WHERE criminal_id=" + criminal_id),
