@@ -179,11 +179,11 @@ def logout():
     return redirect(url_for("login"))
 
 @app.route("/criminals/<string:criminal_id>/addalias/<string:alias>")
-def deleteAlias(criminal_id, alias):
+def addAlias(criminal_id, alias):
     addAlias(criminal_id, alias)
     return redirect(f"/criminal/{criminal_id}")
 
-@app.route("/criminals/<string:criminal_id>/removalias/<string:alias>")
+@app.route("/criminals/<string:criminal_id>/removealias/<string:alias>")
 def deleteAlias(criminal_id, alias):
     removeAlias(criminal_id, alias)
     return redirect(f"/criminal/{criminal_id}")
@@ -201,15 +201,15 @@ def changeProbOffFirst(id, new_first):
     runStatement(f'UPDATE criminals SET First="{new_first}" WHERE Prob_ID="{id}"')
 
 @app.route("/criminals/<string:id>/editlast/<string:new_last>")
-def changeCrimFirst(id, new_last):
+def changeCrimLast(id, new_last):
     runStatement(f'UPDATE criminals SET Last="{new_last}" WHERE Criminal_ID="{id}"')
 
 @app.route("/criminals/<string:id>/editlast/<string:new_last>")
-def changeOffFirst(id, new_last):
+def changeOffLast(id, new_last):
     runStatement(f'UPDATE criminals SET Last="{new_last}" WHERE Officer_ID="{id}"')
 
 @app.route("/criminals/<string:id>/editlast/<string:new_last>")
-def changeProbOffFirst(id, new_last):
+def changeProbOffLast(id, new_last):
     runStatement(f'UPDATE criminals SET Last="{new_last}" WHERE Prob_ID="{id}"')
 
     
