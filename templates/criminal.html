@@ -15,6 +15,20 @@
         <p class="text">Name: {{data.First[0]}} {{data.Last[0]}}</p>
         <p class="text">Address: {{data.Street[0]}}, {{data.City[0]}}, {{data.State[0]}}, {{data.Zip[0]}}</p>
         <p class="text">Phone:  {{data.Phone[0]}}</p>
+        <div style="display:flex;">
+        <label for="yes-no-checkbox" style="margin-right:10px;">Violent Offender Status:</label>
+        <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" checked readonly disabled style="margin-right:10px;">
+        <label for="yes-no-checkbox" style="margin-right:10px;">Yes</label>
+        <input type="checkbox" id="no-checkbox" name="no-checkbox" readonly disabled style="margin-right:10px;">
+        <label for="no-checkbox">No</label>
+      </div>
+        <div style="display:flex;">
+          <label for="yes-no-checkbox2" style="margin-right:10px;">Probation Status:</label>
+          <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2" checked readonly disabled style="margin-right:10px;">
+          <label for="yes-no-checkbox2" style="margin-right:10px;">Yes</label>
+          <input type="checkbox" id="no-checkbox2" name="no-checkbox2" readonly disabled style="margin-right:10px;">
+          <label for="no-checkbox2">No</label>
+        </div>
       </div>
       <div>
         <a class = "logout" href="/logout">Logout</a>
@@ -33,25 +47,11 @@
         <a href="/criminals/{{data.Criminal_ID[0]}}/addalias">Add</a>
         <input type="submit" value="Delete">
         <label for="my-dropdown3">Aliases</label>
-        <div style="display:flex;">
           <select id="my-dropdown3" name="my-dropdown3" style="margin-right:10px;">
             {% for alias in aliases.iterrows() %}
               <option>{{ alias[1][2] }}</option>
             {% endfor %}
           </select>
-          <label for="yes-no-checkbox" style="margin-right:10px;">Violent Offender Status:</label>
-          <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" checked readonly disabled style="margin-right:10px;">
-          <label for="yes-no-checkbox" style="margin-right:10px;">Yes</label>
-          <input type="checkbox" id="no-checkbox" name="no-checkbox" readonly disabled style="margin-right:10px;">
-          <label for="no-checkbox">No</label>
-        </div>
-        <div style="display:flex;">
-          <label for="yes-no-checkbox2" style="margin-right:10px;">Probation Status:</label>
-          <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2" checked readonly disabled style="margin-right:10px;">
-          <label for="yes-no-checkbox2" style="margin-right:10px;">Yes</label>
-          <input type="checkbox" id="no-checkbox2" name="no-checkbox2" readonly disabled style="margin-right:10px;">
-          <label for="no-checkbox2">No</label>
-        </div>
       </div>
     </div>
   </body>
