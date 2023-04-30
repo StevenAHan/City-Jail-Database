@@ -28,28 +28,29 @@
           <option>{{ sentence[1][0] }}</option>
           {% endfor %}
         </select>
-        <div class="button-dropdown-container">
-          <input type="submit" value="Add" class="button">
-          <input type="submit" value="Delete" class="button">
-          <label for="my-dropdown3">Aliases</label>
-          <select id="my-dropdown3" name="my-dropdown3">
+        <input type="submit" value="Add">
+        <input type="submit" value="Delete">
+        <label for="my-dropdown3">Aliases</label>
+        <div style="display:flex;">
+          <select id="my-dropdown3" name="my-dropdown3" style="margin-right:10px;">
             {% for alias in aliases.iterrows() %}
               <option>{{ alias[1][2] }}</option>
             {% endfor %}
           </select>
+          <label for="yes-no-checkbox" style="margin-right:10px;">Violent Offender Status:</label>
+          <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" checked readonly style="margin-right:10px;">
+          <label for="yes-no-checkbox" style="margin-right:10px;">Yes</label>
+          <input type="checkbox" id="no-checkbox" name="no-checkbox" readonly style="margin-right:10px;">
+          <label for="no-checkbox">No</label>
+        </div>
+        <div style="display:flex;">
+          <label for="yes-no-checkbox2" style="margin-right:10px;">Probation Status:</label>
+          <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2" checked readonly style="margin-right:10px;">
+          <label for="yes-no-checkbox2" style="margin-right:10px;">Yes</label>
+          <input type="checkbox" id="no-checkbox2" name="no-checkbox2" readonly style="margin-right:10px;">
+          <label for="no-checkbox2">No</label>
         </div>
       </div>
     </div>
-    </select>
-    <label for="yes-no-checkbox">Violent Offender Status:</label>
-    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox">
-    <label for="yes-no-checkbox" value="yes">Yes</label>
-    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox">
-    <label for="yes-no-checkbox" value="no">No</label>
-    <label for="yes-no-checkbox2">Probation Status:</label>
-    <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2">
-    <label for="yes-no-checkbox2" value="yes">Yes</label>
-    <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2">
-    <label for="yes-no-checkbox2" value="no">No</label>
   </body>
 </html>
