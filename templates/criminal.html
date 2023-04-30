@@ -45,13 +45,15 @@
           {% endfor %}
         </select>
         <a href="/criminals/{{data.Criminal_ID[0]}}/addalias">Add</a>
-        <input type="submit" value="Delete">
-        <label for="my-dropdown3">Aliases</label>
-          <select id="my-dropdown3" name="my-dropdown3" style="margin-right:10px;">
+        <form action="/criminals/{{data.Criminal_ID[0]}}" method="POST">
+          <input type="submit" value="Delete">
+          <label for="my-dropdown3">Aliases</label>
+          <select id="my-dropdown3" name="dropdown" style="margin-right:10px;">
             {% for alias in aliases.iterrows() %}
               <option>{{ alias[1][2] }}</option>
             {% endfor %}
           </select>
+        </form>
       </div>
     </div>
   </body>
