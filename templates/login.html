@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %} 
 <h1>Login:</h1>
-{{error}}
+
 <form action="/" method="POST">
+    <label for="yes">{{error}}</label>
     <label for="input">Username:</label>
     <input type="text" name="username">
     <label for="input">Password:</label>

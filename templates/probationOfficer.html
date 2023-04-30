@@ -13,7 +13,7 @@
     <p>Phone:  {{data.Phone[0]}}</p>
     <p>Email: {{data.Email[0]}}</p>
     <p>Address: {{data.Street[0]}}, {{data.City[0]}}, {{data.State[0]}}, {{data.Zip[0]}}</p>
-    <label for="my-dropdown">Associated Sentances</label>
+    <label for="my-dropdown">Associated Sentences</label>
     <select id="my-dropdown" name="my-dropdown">
       {% for sentence in sentences.iterrows() %}
       <option>{{ sentence[1][0] }}</option>
@@ -21,10 +21,10 @@
     </select>
     
     <label for="yes-no-checkbox2" style="margin-right:10px;">Status:</label>
-    <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2" checked readonly disable style="margin-right:10px;">
-    <label for="yes-no-checkbox2" style="margin-right:10px;"value = "Active">Yes</label>
-    <input type="checkbox" id="no-checkbox2" name="no-checkbox2" readonly disable style="margin-right:10px;">
-    <label for="no-checkbox2"value = "Inactive">No</label>
+    <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2" {% if data.Status[0] == "A" %}checked{% endif %} readonly disabled style="margin-right:10px;">
+    <label for="yes-no-checkbox2" style="margin-right:10px;"value = "Active">Active</label>
+    <input type="checkbox" id="no-checkbox2" name="no-checkbox2" {% if data.Status[0] == "I" %}checked{% endif %} readonly disabled style="margin-right:10px;">
+    <label for="no-checkbox2"value = "Inactive">Inactive</label>
 
   </body>
 </html>

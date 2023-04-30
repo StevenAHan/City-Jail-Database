@@ -15,20 +15,25 @@
         <p class="text">Name: {{data.First[0]}} {{data.Last[0]}}</p>
         <p class="text">Address: {{data.Street[0]}}, {{data.City[0]}}, {{data.State[0]}}, {{data.Zip[0]}}</p>
         <p class="text">Phone:  {{data.Phone[0]}}</p>
+
+        
         <div style="display:flex;">
-        <label for="yes-no-checkbox" style="margin-right:10px;">Violent Offender Status:</label>
-        <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" checked readonly disabled style="margin-right:10px;">
-        <label for="yes-no-checkbox" style="margin-right:10px;">Yes</label>
-        <input type="checkbox" id="no-checkbox" name="no-checkbox" readonly disabled style="margin-right:10px;">
-        <label for="no-checkbox">No</label>
-      </div>
+          <label for="yes-no-checkbox" style="margin-right:10px;">Violent Offender Status:</label>
+          <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox"  {% if data.V_status[0] == "Y" %}checked{% endif %}  readonly disabled style="margin-right:10px;">
+          <label for="yes-no-checkbox" style="margin-right:10px;">Yes</label>
+          <input type="checkbox" id="no-checkbox" name="no-checkbox" {% if data.V_status[0] == "N" %}checked{% endif %} readonly disabled style="margin-right:10px;">
+          <label for="no-checkbox">No</label>
+        </div>
+
+
         <div style="display:flex;">
           <label for="yes-no-checkbox2" style="margin-right:10px;">Probation Status:</label>
-          <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2" checked readonly disabled style="margin-right:10px;">
+          <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2" {% if data.P_status[0] == "Y" %}checked{% endif %} readonly disabled style="margin-right:10px;">
           <label for="yes-no-checkbox2" style="margin-right:10px;">Yes</label>
-          <input type="checkbox" id="no-checkbox2" name="no-checkbox2" readonly disabled style="margin-right:10px;">
+          <input type="checkbox" id="no-checkbox2" name="no-checkbox2" {% if data.P_status[0] == "N" %}checked{% endif %} readonly disabled style="margin-right:10px;">
           <label for="no-checkbox2">No</label>
         </div>
+
       </div>
       <div>
         <a class = "logout" href="/logout">Logout</a>

@@ -18,9 +18,9 @@
       </div>
       <div class="officer-status">
         <label for="yes-no-checkbox2">Status:</label>
-        <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2" checked readonly disabled>
+        <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2" {% if data.Status[0] == "A" %}checked{% endif %} = readonly disabled>
         <label for="yes-no-checkbox2" class="checkbox-label" value="Active">Active</label>
-        <input type="checkbox" id="no-checkbox2" name="no-checkbox2" readonly disabled>
+        <input type="checkbox" id="no-checkbox2" name="no-checkbox2" {% if data.Status[0] == "I" %}checked{% endif %} readonly disabled>
         <label for="no-checkbox2" class="checkbox-label" value="Inactive">Inactive</label>
       </div>
     </div>
