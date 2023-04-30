@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %} 
+<h1>Add Alias For Criminal With Criminal ID {{criminal_id}}:</h1>
+<form action="/criminals/{{criminal_id}}/addalias" method="POST">
+    <label for="input">New Alias:</label>
+    <input type="text" name="alias">
+    <input type="submit">
+</form>
+{% endblock %}

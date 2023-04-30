@@ -28,7 +28,7 @@
           <option>{{ sentence[1][0] }}</option>
           {% endfor %}
         </select>
-        <input type="submit" value="Add">
+        <a href="/criminals/{{data.Criminal_ID[0]}}/addalias">Add</a>
         <input type="submit" value="Delete">
         <label for="my-dropdown3">Aliases</label>
         <div style="display:flex;">
@@ -38,16 +38,16 @@
             {% endfor %}
           </select>
           <label for="yes-no-checkbox" style="margin-right:10px;">Violent Offender Status:</label>
-          <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" checked readonly style="margin-right:10px;">
+          <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" checked readonly disabled style="margin-right:10px;">
           <label for="yes-no-checkbox" style="margin-right:10px;">Yes</label>
-          <input type="checkbox" id="no-checkbox" name="no-checkbox" readonly style="margin-right:10px;">
+          <input type="checkbox" id="no-checkbox" name="no-checkbox" readonly disabled style="margin-right:10px;">
           <label for="no-checkbox">No</label>
         </div>
         <div style="display:flex;">
           <label for="yes-no-checkbox2" style="margin-right:10px;">Probation Status:</label>
-          <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2" checked readonly style="margin-right:10px;">
+          <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2" checked readonly disabled style="margin-right:10px;">
           <label for="yes-no-checkbox2" style="margin-right:10px;">Yes</label>
-          <input type="checkbox" id="no-checkbox2" name="no-checkbox2" readonly style="margin-right:10px;">
+          <input type="checkbox" id="no-checkbox2" name="no-checkbox2" readonly disabled style="margin-right:10px;">
           <label for="no-checkbox2">No</label>
         </div>
       </div>
