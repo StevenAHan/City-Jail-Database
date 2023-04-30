@@ -3,22 +3,26 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/officer.css') }}">
     <title>City Jail Database</title>
   </head>
   <body>
-    <p>Officers</p>
-    <p>Officer ID: {{data.Officer_ID[0]}}</p>
-    <p>Name: {{data.First[0]}} {{data.Last[0]}}</p>
-    <p>Phone:  {{data.Phone[0]}}</p>
-    <p>Badge: {{data.Badge[0]}}</p>
-    <p>Precinct: {{data.Precinct[0]}}</p>
-  
- 
-    <label for="yes-no-checkbox2" style="margin-right:10px;">Status:</label>
-    <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2" checked readonly disabled style="margin-right:10px;">
-    <label for="yes-no-checkbox2" style="margin-right:10px;"value = "Active">Active</label>
-    <input type="checkbox" id="no-checkbox2" name="no-checkbox2" readonly disabled style="margin-right:10px;">
-    <label for="no-checkbox2"value = "Inactive">Inactive</label>
+    <div class="container">
+      <h1>Officers</h1>
+      <div class="officer-info">
+        <p class="officer-id">Officer ID: {{data.Officer_ID[0]}}</p>
+        <p class="officer-name">Name: {{data.First[0]}} {{data.Last[0]}}</p>
+        <p class="officer-phone">Phone: {{data.Phone[0]}}</p>
+        <p class="officer-badge">Badge: {{data.Badge[0]}}</p>
+        <p class="officer-precinct">Precinct: {{data.Precinct[0]}}</p>
+      </div>
+      <div class="officer-status">
+        <label for="yes-no-checkbox2">Status:</label>
+        <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2" checked readonly disabled>
+        <label for="yes-no-checkbox2" class="checkbox-label" value="Active">Active</label>
+        <input type="checkbox" id="no-checkbox2" name="no-checkbox2" readonly disabled>
+        <label for="no-checkbox2" class="checkbox-label" value="Inactive">Inactive</label>
+      </div>
+    </div>
   </body>
 </html>
