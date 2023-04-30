@@ -51,8 +51,11 @@ def runStatement(statement):
     cursor = mysql.connection.cursor()
     cursor.execute(statement)
     results = cursor.fetchall()
-    column_names = [desc[0] for desc in cursor.description]
-    df = pd.DataFrame(results, columns=column_names)
+    mysql.connection.commit()
+    df = ""
+    if(cursor.description):
+        column_names = [desc[0] for desc in cursor.description]
+        df = pd.DataFrame(results, columns=column_names)
     cursor.close()
     return df
 
@@ -63,14 +66,15 @@ def hashPassword(password):
 def checkPassword(password, hashed_password):
     return bcrypt.checkpw(password.encode('utf-8'), hashed_password.encode('utf-8'))
 
-def addUser(username, password, security_level):
-    runStatement('''INSERT INTO users VALUES(%s,%s,%s)''', username, password, security_level)
 
 def removeAlias(criminial_id, alias):
-    runStatement("DELETE FROM Aliases WHERE criminal_id=%s AND alias=%s", criminial_id, alias)
+    runStatement(f"DELETE FROM Alias WHERE criminal_id={criminial_id} AND alias={alias}")
 
 def addAlias(criminal_id, alias):
-    runStatement("INSERT INTO Aliases VALUES(%s,%s)", criminal_id, alias)
+    alias_ID = runStatement(f"SELECT alias_id FROM alias")["alias_id"].max()
+    print(alias_ID)
+    print(f'INSERT INTO Alias VALUES({alias_ID + 1},{criminal_id},"{alias}")')
+    runStatement(f'INSERT INTO Alias VALUES({alias_ID + 1},{criminal_id},"{alias}")')
 
 def changeCriminalName(criminal_id, newFirst, newLast):
     runStatement(f'UPDATE Criminals SET First="{newFirst}" AND Last="{newLast}" WHERE Criminal_ID="{criminal_id}"')
@@ -163,7 +167,13 @@ def search():
         searchType = request.form["search-type"]
         searchTypeDivided = searchType.split(",")
         searchTypeDivided[1] = searchTypeDivided[1].capitalize()
-        filteredResults = runStatement(f"SELECT * FROM {searchTypeDivided[0]} WHERE {searchTypeDivided[1]} LIKE '{search}%'")
+        if(searchTypeDivided[1][searchTypeDivided[1].length - 1] == "d"):
+            if(search != ""):
+                filteredResults = runStatement(f"SELECT * FROM {searchTypeDivided[0]} WHERE {searchTypeDivided[1]}={search}")
+            else:
+                filteredResults = runStatement(f"SELECT * FROM {searchTypeDivided[0]}")
+        else:
+            filteredResults = runStatement(f"SELECT * FROM {searchTypeDivided[0]} WHERE {searchTypeDivided[1]} LIKE '{search}%'")
 
         for index, filteredResult in filteredResults.iterrows():
             results.append(f"<a href=/{searchTypeDivided[0]}/{filteredResult[0]}>" + filteredResult[searchTypeDivided[1]] 
@@ -177,11 +187,7 @@ def search():
 def logout():
     logout_user()
     return redirect(url_for("login"))
-
-@app.route("/criminals/<string:criminal_id>/addalias/<string:alias>")
-def addAlias(criminal_id, alias):
-    addAlias(criminal_id, alias)
-    return redirect(f"/criminal/{criminal_id}")
+    
 
 @app.route("/criminals/<string:criminal_id>/removealias/<string:alias>")
 def deleteAlias(criminal_id, alias):
@@ -211,6 +217,18 @@ def changeOffLast(id, new_last):
 @app.route("/criminals/<string:id>/editlast/<string:new_last>")
 def changeProbOffLast(id, new_last):
     runStatement(f'UPDATE criminals SET Last="{new_last}" WHERE Prob_ID="{id}"')
+
+@app.route("/criminals/<string:criminal_id>/addalias", methods=["GET", "POST"])
+def addAliasPage(criminal_id):
+    if request.method == "POST":
+        newAlias = request.form.get('alias')
+        addAlias(criminal_id, newAlias)
+        return redirect(f"/criminals/{criminal_id}")
+    return render_template("add_alias.html", criminal_id=criminal_id)
+
+# @app.route("/criminals/<string:criminal_id>/removealias")
+# def deleteAliasPage(criminal_id):
+#     return redirect(f"/criminal/{criminal_id}")
 
     
 if __name__ == "__main__":
