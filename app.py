@@ -195,7 +195,7 @@ def search():
 @app.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for("login"))
+    return redirect("/")
     
 
 @app.route("/criminals/<string:criminal_id>/removealias/<string:alias>")
