@@ -9,6 +9,7 @@
   <body>
     <div class="container">
       <div>
+        <a href="/home"><img src="{{ url_for('static', filename='images/home.png') }}" alt="Home"></a>
         <h1>Criminals</h1>
         <p class="text">Criminal ID: {{data.Criminal_ID[0]}}</p>
         <p class="text">Name: {{data.First[0]}} {{data.Last[0]}}</p>
@@ -16,6 +17,7 @@
         <p class="text">Phone:  {{data.Phone[0]}}</p>
       </div>
       <div>
+        <a class = "logout" href="/logout">Logout</a>
         <label for="my-dropdown">Associated Crimes</label>
         <select id="my-dropdown" name="my-dropdown">
           {% for crime in crimes.iterrows() %}
