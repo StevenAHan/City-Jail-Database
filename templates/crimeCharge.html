@@ -17,11 +17,11 @@
     <p>Crime Description:{{code.crime_description[0]}} </p>
     
     <label for="yes-no-checkbox">Charge Status</label>
-    <input type="checkbox" id="yes-no-checkbox" {% if data.Status[0] == "PD" %}checked{% endif %} name="yes-no-checkbox" disabled>
+    <input type="checkbox" id="yes-no-checkbox" {% if data.Charge_status[0] == "PD" %}checked{% endif %} name="yes-no-checkbox" disabled>
     <label for="yes-no-checkbox" value="Active">Pending</label>
-    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" {% if data.Status[0] == "GL" %}checked{% endif %} disabled>
+    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" {% if data.Charge_status[0] == "GL" %}checked{% endif %} disabled>
     <label for="yes-no-checkbox" value="Inactive">Guilty</label>
-    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" {% if data.Status[0] == "NG" %}checked{% endif %} disabled>
+    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" {% if data.Charge_status[0] == "NG" %}checked{% endif %} disabled>
     <label for="yes-no-checkbox" value="Inactive">Not Guilty</label>
 
   </body>

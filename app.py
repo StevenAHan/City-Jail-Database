@@ -149,7 +149,7 @@ def showCrimes(crime_id):
                            power=current_user.get_power())
 
 #crimeCharge Information
-@app.route("/charges/<string:charge_id>")
+@app.route("/crime_charges/<string:charge_id>")
 @login_required
 def showCharges(charge_id):
     data = runStatement("SELECT * FROM crime_charges WHERE charge_id=" + charge_id)
