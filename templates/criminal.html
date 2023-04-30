@@ -28,12 +28,16 @@
           <option>{{ sentence[1][0] }}</option>
           {% endfor %}
         </select>
-        <label for="my-dropdown3">Aliases</label>
-        <select id="my-dropdown3" name="my-dropdown3">
-          {% for alias in aliases.iterrows() %}
-            <option>{{ alias[1][2] }}</option>
-          {% endfor %}
-        </select>
+        <div class="button-dropdown-container">
+          <input type="submit" value="Add" class="button">
+          <input type="submit" value="Delete" class="button">
+          <label for="my-dropdown3">Aliases</label>
+          <select id="my-dropdown3" name="my-dropdown3">
+            {% for alias in aliases.iterrows() %}
+              <option>{{ alias[1][2] }}</option>
+            {% endfor %}
+          </select>
+        </div>
       </div>
     </div>
     </select>
