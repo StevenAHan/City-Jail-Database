@@ -15,23 +15,11 @@
     <p>Status: {{data.Status[0]}}</p>
     <p>Hearing Date: {{data.Hearing_date[0]}}</p>
     <p>Appeal Cutoff Date: {{data.Appeal_cut_date[0]}}</p>
-    <label for="my-dropdown">Associated Charges</label>
-    <select id="my-dropdown" name="my-dropdown">
-      <option value="option1">Option 1</option>
-      <option value="option2">Option 2</option>
-      <option value="option3">Option 3</option>
-    </select>
-    <label for="my-dropdown2">Associated Officers</label>
-    <select id="my-dropdown2" name="my-dropdown2">
-      <option value="option1">Option 1</option>
-      <option value="option2">Option 2</option>
-      <option value="option3">Option 3</option>
-    </select>
     <label for="my-dropdown3">Associated Appeals</label>
     <select id="my-dropdown3" name="my-dropdown3">
-      <option value="option1">Option 1</option>
-      <option value="option2">Option 2</option>
-      <option value="option3">Option 3</option>
+      {% for appeal in appeals.iterrows() %}
+          <option>{{ appeal[1][0] }}</option>
+          {% endfor %}
     </select>
   </body>
 </html>

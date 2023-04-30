@@ -7,7 +7,7 @@
     <title>City Jail Database</title>
   </head>
   <body>
-    <p>Sentance</p>
+    <h1>Sentance</h1>
     <p>Sentences: {{data.Sentence_ID[0]}}</p>
     <p>Associated Criminal: {{data.Criminal_ID[0]}}</p>
     <p>Start Date: {{data.Start_date[0]}}</p>
@@ -15,12 +15,6 @@
     <p>End Date:  {{data.End_date}}</p>
     <p>Associated Probation Officer: {{data.Prob_ID[0]}}</p>
     <label for="my-dropdown">Associated Sentences</label>
-    <select id="my-dropdown" name="my-dropdown">
-      <option value="option1">Option 1</option>
-      <option value="option2">Option 2</option>
-      <option value="option3">Option 3</option>
-    </select>
-    
     <label for="yes-no-checkbox">Sentence Type</label>
     <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" disabled {% if data.Type[0] == "J" %}checked{% endif %}>
     <label for="yes-no-checkbox" value="Active">Jail Period</label>

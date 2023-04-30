@@ -19,12 +19,12 @@
       <option>{{ sentence[1][0] }}</option>
     {% endfor %}
     </select>
-    
+    <div style="display:flex;">
     <label for="yes-no-checkbox2" style="margin-right:10px;">Status:</label>
     <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2" {% if data.Status[0] == "A" %}checked{% endif %} readonly disabled style="margin-right:10px;">
     <label for="yes-no-checkbox2" style="margin-right:10px;"value = "Active">Active</label>
     <input type="checkbox" id="no-checkbox2" name="no-checkbox2" {% if data.Status[0] == "I" %}checked{% endif %} readonly disabled style="margin-right:10px;">
     <label for="no-checkbox2"value = "Inactive">Inactive</label>
-
+    </div>
   </body>
 </html>

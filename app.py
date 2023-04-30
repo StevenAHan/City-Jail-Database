@@ -144,7 +144,8 @@ def showSentence(sentence_id):
 @app.route("/crimes/<string:crime_id>")
 @login_required
 def showCrimes(crime_id):
-    return render_template("crime.html", data=runStatement("SELECT * FROM crimes WHERE crime_id=" + crime_id), 
+    return render_template("crime.html", data=runStatement("SELECT * FROM crimes WHERE crime_id=" + crime_id),
+                           appeals=runStatement("SELECT * FROM appeals WHERE crime_id=" + crime_id),
                            power=current_user.get_power())
 
 #crimeCharge Information
