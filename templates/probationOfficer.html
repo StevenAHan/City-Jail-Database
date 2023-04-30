@@ -8,7 +8,7 @@
   </head>
   <body>
     <p>Probation Officers</p>
-    <p>Probation ID: {{data.prob_id[0]}}</p>
+    <p>Probation ID: {{data.Prob_ID[0]}}</p>
     <p>Name: {{data.First[0]}} {{data.Last[0]}}</p>
     <p>Phone:  {{data.Phone[0]}}</p>
     <p>Email: {{data.Email[0]}}</p>
@@ -21,9 +21,9 @@
     </select>
     
     <label for="yes-no-checkbox2" style="margin-right:10px;">Status:</label>
-    <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2" checked readonly style="margin-right:10px;">
+    <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2" checked readonly disable style="margin-right:10px;">
     <label for="yes-no-checkbox2" style="margin-right:10px;"value = "Active">Yes</label>
-    <input type="checkbox" id="no-checkbox2" name="no-checkbox2" readonly style="margin-right:10px;">
+    <input type="checkbox" id="no-checkbox2" name="no-checkbox2" readonly disable style="margin-right:10px;">
     <label for="no-checkbox2"value = "Inactive">No</label>
 
   </body>
