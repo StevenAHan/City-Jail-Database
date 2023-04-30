@@ -8,23 +8,17 @@
   </head>
   <body>
     <p>Officers</p>
-    <p>Officer ID: {{data.Officers_ID[0]}}</p>
+    <p>Officer ID: {{data.Officer_ID[0]}}</p>
     <p>Name: {{data.First[0]}} {{data.Last[0]}}</p>
     <p>Phone:  {{data.Phone[0]}}</p>
     <p>Badge: {{data.Badge[0]}}</p>
     <p>Precinct: {{data.Precinct[0]}}</p>
-    <label for="my-dropdown">Associated Crimes</label>
-    <select id="my-dropdown" name="my-dropdown">
-      {% for crime in crimes.iterrows() %}
-      <option>{{ crime[1][0] }}</option>
-    {% endfor %}
-    </select>
-    
-    <label for="yes-no-checkbox">Statues</label>
-    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox">
-    <label for="yes-no-checkbox" value="Active">Yes</label>
-    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox">
-    <label for="yes-no-checkbox" value="Inactive">No</label>
-
+  
+ 
+    <label for="yes-no-checkbox2" style="margin-right:10px;">Status:</label>
+    <input type="checkbox" id="yes-no-checkbox2" name="yes-no-checkbox2" checked readonly disabled style="margin-right:10px;">
+    <label for="yes-no-checkbox2" style="margin-right:10px;"value = "Active">Active</label>
+    <input type="checkbox" id="no-checkbox2" name="no-checkbox2" readonly disabled style="margin-right:10px;">
+    <label for="no-checkbox2"value = "Inactive">Inactive</label>
   </body>
 </html>
