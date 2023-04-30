@@ -13,11 +13,11 @@
     <p>Filing Date:   {{data.Filing_date[0]}}</p>
     <p>Hearing Date:  {{data.Hearing_date[0]}}</p>
     <label for="yes-no-checkbox">Status</label>
-    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox">
+    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" disabled {% if data.Status[0] == "P" %}checked{% endif %}>
     <label for="yes-no-checkbox" value="Active">Pending</label>
-    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox">
+    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" disabled {% if data.Status[0] == "A" %}checked{% endif %}>
     <label for="yes-no-checkbox" value="Inactive">Approved</label>
-    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox">
+    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" disabled {% if data.Status[0] == "D" %}checked{% endif %}>
     <label for="yes-no-checkbox" value="Inactive">Disapproved</label>
   </body>
 </html>

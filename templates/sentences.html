@@ -22,11 +22,11 @@
     </select>
     
     <label for="yes-no-checkbox">Sentence Type</label>
-    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox">
+    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" disabled {% if data.Type[0] == "J" %}checked{% endif %}>
     <label for="yes-no-checkbox" value="Active">Jail Period</label>
-    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox">
+    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" disabled {% if data.Type[0] == "H" %}checked{% endif %}>
     <label for="yes-no-checkbox" value="Inactive">House Arrest</label>
-    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox">
+    <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" disabled {% if data.Type[0] == "P" %}checked{% endif %}>
     <label for="yes-no-checkbox" value="Inactive">Probation</label>
 
   </body>

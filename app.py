@@ -210,11 +210,11 @@ def deleteAlias(criminal_id, alias):
 def changeCrimFirst(id, new_first):
     runStatement(f'UPDATE criminals SET First="{new_first}" WHERE Criminal_ID="{id}"')
 
-@app.route("/criminals/<string:id>/editfirst/<string:new_first>")
+@app.route("/officers/<string:id>/editfirst/<string:new_first>")
 def changeOffFirst(id, new_first):
     runStatement(f'UPDATE criminals SET First="{new_first}" WHERE Officer_ID="{id}"')
 
-@app.route("/criminals/<string:id>/editfirst/<string:new_first>")
+@app.route("/prob_officer/<string:id>/editfirst/<string:new_first>")
 def changeProbOffFirst(id, new_first):
     runStatement(f'UPDATE criminals SET First="{new_first}" WHERE Prob_ID="{id}"')
 
@@ -222,11 +222,11 @@ def changeProbOffFirst(id, new_first):
 def changeCrimLast(id, new_last):
     runStatement(f'UPDATE criminals SET Last="{new_last}" WHERE Criminal_ID="{id}"')
 
-@app.route("/criminals/<string:id>/editlast/<string:new_last>")
+@app.route("/officers/<string:id>/editlast/<string:new_last>")
 def changeOffLast(id, new_last):
     runStatement(f'UPDATE criminals SET Last="{new_last}" WHERE Officer_ID="{id}"')
 
-@app.route("/criminals/<string:id>/editlast/<string:new_last>")
+@app.route("/prob_officer/<string:id>/editlast/<string:new_last>")
 def changeProbOffLast(id, new_last):
     runStatement(f'UPDATE criminals SET Last="{new_last}" WHERE Prob_ID="{id}"')
 
@@ -238,9 +238,6 @@ def addAliasPage(criminal_id):
         return redirect(f"/criminals/{criminal_id}")
     return render_template("add_alias.html", criminal_id=criminal_id)
 
-# @app.route("/criminals/<string:criminal_id>/removealias")
-# def deleteAliasPage(criminal_id):
-#     return redirect(f"/criminal/{criminal_id}")
 
     
 if __name__ == "__main__":
