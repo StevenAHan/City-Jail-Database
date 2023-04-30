@@ -1,24 +1,19 @@
-/* Set the container to a grid layout */
 .container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
   }
   
-  /* Style the criminal information in the left column */
   .text {
     font-size: 18px;
     margin: 0;
   }
   
-  /* Style the dropdowns in the right column */
   label {
     display: block;
     margin-bottom: 10px;
   }
-  /* body {
-    background-color: blue;
-  } */
+  
   select {
     width: 100%;
     padding: 10px;
@@ -27,4 +22,46 @@
     background-color: white;
     font-size: 16px;
     margin-bottom: 20px;
+  }
+  
+  /* new styles for button and dropdown container */
+  .button-dropdown-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 10px;
+    align-items: center;
+  }
+  
+  /* styles for add and delete buttons */
+  .button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  /* style for aliases dropdown */
+  #my-dropdown3 {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  /* positioning for button and dropdown container */
+  @media screen and (min-width: 768px) {
+    .button-dropdown-container {
+      grid-template-columns: repeat(2, auto) 1fr;
+      grid-gap: 20px;
+      align-items: flex-end;
+    }
   }
