@@ -169,7 +169,7 @@ def search():
         searchType = request.form["search-type"]
         searchTypeDivided = searchType.split(",")
         searchTypeDivided[1] = searchTypeDivided[1].capitalize()
-        if(searchTypeDivided[1][searchTypeDivided[1].length - 1] == "d"):
+        if(searchTypeDivided[1][len(searchTypeDivided[1]) - 1] == "d"):
             if(search != ""):
                 filteredResults = runStatement(f"SELECT * FROM {searchTypeDivided[0]} WHERE {searchTypeDivided[1]}={search}")
             else:
