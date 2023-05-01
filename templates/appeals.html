@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/alias.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/alias1.css') }}">
     <title>City Jail Database</title>
   </head>
   <body>
-    <a href="/home"><img src="{{ url_for('static', filename='images/home.png') }}" alt="Home"></a>
+    <a class = "home" href="/home">Home</a>
     <a class = "logout" href="/logout">Logout</a>
     <h1>Appeals</h1>
     <p>Appeal ID: {{data.Appeal_ID[0]}}</p>

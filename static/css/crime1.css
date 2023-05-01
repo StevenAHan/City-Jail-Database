@@ -9,7 +9,39 @@ body {
     text-align: center;
     margin: 1rem;
   }
+  a.logout {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: lightblue;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+  }
   
+  
+  a.logout:hover {
+    background-color: #3e8e41;
+  }
+  a.home {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: lightblue;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+  }
+  
+  a.home:hover {
+    background-color: #3e8e41;
+  }
   /* Style the paragraphs */
   p {
     font-size: 1.2rem;

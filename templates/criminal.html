@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/criminal1.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/criminal2.css') }}">
     <title>City Jail Database</title>
   </head>
   <body>
     <div class="container">
       <div>
-        <a href="/home"><img src="{{ url_for('static', filename='images/home.png') }}" alt="Home"></a>
+        <a class = "home" href="/home">Home</a>
         {% if power == "M" %}
         <a href="/criminals/add">Add Criminal</a>
         <a href="/criminals/delete/{{data.Criminal_ID[0]}}">Delete Criminal</a>
