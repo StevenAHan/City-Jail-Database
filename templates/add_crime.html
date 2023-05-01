@@ -3,15 +3,15 @@
 <h1>Add A New Crime:</h1>
 <form action="/crimes/add" method="POST">
     <label for="input">Associated Criminal ID:</label>
-    <input type="text" name="criminal_ID">
+    <input type="text" name="criminal_ID" required>
     <label for="input">Classification (F (Felony), M (Misdemeanor), O (Other), U (Undefined)):</label>
-    <input type="text" name="classification">
+    <input type="text" name="classification" required>
     <label for="input">Date Charged (yyyy/mm/dd):</label>
-    <input type="text" name="date_charged">
+    <input type="text" name="date_charged" required>
     <label for="input">Status (CL (Closed), CA (Can Appeal), IA (In Appeal)):</label>
-    <input type="text" name="status">
+    <input type="text" name="status" required>
     <label for="input">Hearing Date (yyyy/mm/dd):</label>
-    <input type="text" name="hearing_date">
+    <input type="text" name="hearing_date" required>
     <input type="submit">
 </form>
 {% endblock %}
