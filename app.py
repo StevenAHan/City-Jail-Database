@@ -109,6 +109,7 @@ def login_post():
 @login_required
 def showCriminal(criminal_id):
     if request.method == "POST":
+        
         removeAlias(criminal_id, request.form.get("dropdown"))
         return redirect("/criminals/"+criminal_id)
     return render_template("criminal.html", data=runStatement("SELECT * FROM criminals WHERE criminal_id=" + criminal_id), 
@@ -206,6 +207,7 @@ def logout():
 def deleteAlias(criminal_id, alias):
     if current_user.get_power() == "V":
         return redirect("/")
+    print(alias)
     removeAlias(criminal_id, alias)
     return redirect(f"/criminal/{criminal_id}")
 
