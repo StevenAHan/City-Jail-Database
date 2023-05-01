@@ -187,12 +187,14 @@ def search():
             if(searchTypeDivided[1][len(searchTypeDivided[1]) - 1] == "d"):
                 if(str(filteredResult[0]) != ""):
                     results.append(f"<a href=/{str(searchTypeDivided[0])}/{str(filteredResult[0])}>" + str(filteredResult[0])
-                           + "<a>" + "<br>")
+                           + "</a>" + "<br>")
             else:
                 if(filteredResult[searchTypeDivided[1]] != ""):
                     results.append(f"<a href=/{searchTypeDivided[0]}/{filteredResult[0]}>" + filteredResult[searchTypeDivided[1]]
-                           + "<a>" + "<br>")
+                           + "</a>" + "<br>")
         results = " ".join(results)
+
+        print(results)
     return render_template("search.html", results=results, searchType=searchTypeDivided[0])
 
 #to logout
