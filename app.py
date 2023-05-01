@@ -205,6 +205,7 @@ def logout():
     
 
 @app.route("/criminals/<string:criminal_id>/removealias/<string:alias>")
+@login_required
 def deleteAlias(criminal_id, alias):
     if current_user.get_power() == "V":
         return redirect("/")
@@ -212,6 +213,7 @@ def deleteAlias(criminal_id, alias):
     return redirect(f"/criminal/{criminal_id}")
 
 @app.route("/criminals/<string:id>/editfirst/", methods=["GET", "POST"])
+@login_required
 def changeCrimFirstPage(id):
     if current_user.get_power() == "V":
         return redirect("/")
@@ -223,6 +225,7 @@ def changeCrimFirstPage(id):
     return render_template("criminal_change_first.html", id=id)
 
 @app.route("/officers/<string:id>/editfirst/", methods=["GET", "POST"])
+@login_required
 def changeOfficerFirstPage(id):
     if current_user.get_power() == "V":
         return redirect("/")
@@ -233,6 +236,7 @@ def changeOfficerFirstPage(id):
     return render_template("officer_change_first.html", id=id)
 
 @app.route("/prob_officer/<string:id>/editfirst/", methods=["GET", "POST"])
+@login_required
 def changeProbOfficerFirstPage(id):
     if current_user.get_power() == "V":
         return redirect("/")
@@ -244,6 +248,7 @@ def changeProbOfficerFirstPage(id):
 
 
 @app.route("/criminals/<string:criminal_id>/addalias", methods=["GET", "POST"])
+@login_required
 def addAliasPage(criminal_id):
     if current_user.get_power() == "V":
         return redirect("/")
@@ -252,6 +257,17 @@ def addAliasPage(criminal_id):
         addAlias(criminal_id, newAlias)
         return redirect(f"/criminals/{criminal_id}")
     return render_template("add_alias.html", criminal_id=criminal_id)
+
+
+@app.route("/payfine/<string:charge_id>", methods=["GET", "POST"])
+@login_required
+def payFine(charge_id):
+    if current_user.get_power() == "V":
+        return redirect("/")
+    if request.method == "POST":
+        runStatement(f"CALL pay_fines({request.form.get('payment')}, {charge_id});")
+        return redirect(f"/crime_charges/{charge_id}")
+    return render_template("pay_fine.html", id=charge_id)
 
 
     
