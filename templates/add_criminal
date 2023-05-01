@@ -3,21 +3,27 @@
 <h1>Add A New Criminal:</h1>
 <form action="/criminal/add" method="POST">
     <label for="input">First Name:</label>
-    <input type="text" name="first">
+    <input type="text" name="first" required>
     <label for="input">Last Name:</label>
-    <input type="text" name="last">
+    <input type="text" name="last" required>
     <label for="input">First Name:</label>
-    <input type="text" name="first">
+    <input type="text" name="first" required>
     <label for="input">Street:</label>
-    <input type="text" name="address">
+    <input type="text" name="address" required>
     <label for="input">City:</label>
-    <input type="text" name="city">
+    <input type="text" name="city" required>
     <label for="input">State:</label>
-    <input type="text" name="state">
+    <input type="text" name="state" required>
     <label for="input">Zip Code:</label>
-    <input type="text" name="zip">
+    <input type="text" name="zip" required>
     <label for="input">First Name:</label>
-    <input type="text" name="first">
+    <input type="text" name="first" required>
+    <label for="input">Phone:</label>
+    <input type="text" name="phone" required>
+    <label for="input">Validation Offender Status (Y or N):</label>
+    <input type="text" name="vstat" required>
+    <label for="input">Probation Status (Y or N ):</label>
+    <input type="text" name="pstat" required>
     <input type="submit">
 </form>
 {% endblock %}
