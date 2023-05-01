@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/officer2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/officer4.css') }}">
     <title>City Jail Database</title>
   </head>
   <body>
     <a href="/home"><img src="{{ url_for('static', filename='images/home.png') }}" alt="Home"></a>
     <a class = "logout" href="/logout">Logout</a>
-    <div class="container">
+    
 
       <h1>Officers</h1>
       <div class="officer-info">
@@ -27,6 +27,6 @@
         <input type="checkbox" id="no-checkbox2" name="no-checkbox2" {% if data.Status[0] == "I" %}checked{% endif %} readonly disabled>
         <label for="no-checkbox2" class="checkbox-label" value="Inactive">Inactive</label>
       </div>
-    </div>
+  
   </body>
 </html>
