@@ -1,0 +1,114 @@
+/* Body styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #f2f2f2;
+  }
+  
+  /* Header styles */
+  h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  /* Link styles */
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+  
+  /* Image styles */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Paragraph styles */
+  p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Checkbox styles */
+  input[type="checkbox"][disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  /* Dropdown styles */
+  label[for="my-dropdown"] {
+    display: block;
+    margin-top: 20px;
+  }
+  
+  /* Logout button styles */
+  .logout {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  /* Footer styles */
+  footer {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #777;
+  }
+  
+  /* Style the "Jail Period" checkbox */
+  input[type="checkbox"][name="yes-no-checkbox"]:nth-of-type(1) + label:before {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 3px;
+    vertical-align: middle;
+  }
+  
+  input[type="checkbox"][name="yes-no-checkbox"]:nth-of-type(1):checked + label:before {
+    background-color: #000;
+  }
+  
+  /* Style the "House Arrest" checkbox */
+  input[type="checkbox"][name="yes-no-checkbox"]:nth-of-type(2) + label:before {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 3px;
+    vertical-align: middle;
+  }
+  
+  input[type="checkbox"][name="yes-no-checkbox"]:nth-of-type(2):checked + label:before {
+    background-color: #000;
+  }
+  
+  /* Style the "Probation" checkbox */
+  input[type="checkbox"][name="yes-no-checkbox"]:nth-of-type(3) + label:before {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 3px;
+    vertical-align: middle;
+  }
+  
+  input[type="checkbox"][name="yes-no-checkbox"]:nth-of-type(3):checked + label:before {
+    background-color: #000;
+  }
+  

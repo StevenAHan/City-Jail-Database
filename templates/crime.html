@@ -3,11 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/crime.css') }}">
     <title>City Jail Database</title>
   </head>
   <body>
-    <p>Crimes</p>
+    <a href="/home"><img src="{{ url_for('static', filename='images/home.png') }}" alt="Home"></a>
+    <a class = "logout" href="/logout">Logout</a>
+    <h1>Crimes</h1>
     <p>Crime ID: {{data.Crime_ID[0]}}</p>
     <p>Associated Criminal:{{data.Criminal_ID[0]}} </p>
     <p>Classification:{{data.Classification[0]}}</p>

@@ -7,7 +7,10 @@
     <title>City Jail Database</title>
   </head>
   <body>
+    <a href="/home"><img src="{{ url_for('static', filename='images/home.png') }}" alt="Home"></a>
+    <a class = "logout" href="/logout">Logout</a>
     <div class="container">
+
       <h1>Officers</h1>
       <div class="officer-info">
         <p class="officer-id">Officer ID: {{data.Officer_ID[0]}}</p>

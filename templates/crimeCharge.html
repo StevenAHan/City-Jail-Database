@@ -3,18 +3,20 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/crimecharge.css') }}">
     <title>City Jail Database</title>
   </head>
   <body>
-    <p>Crime Charges</p>
+    <a href="/home"><img src="{{ url_for('static', filename='images/home.png') }}" alt="Home"></a>
+    <a class = "logout" href="/logout">Logout</a>
+    <h1>Crime Charges</h1>
     <p>Charge ID: {{data.Charge_ID[0]}}</p>
     <p>Fine Amount: {{data.Fine_amount[0]}}</p>
     <p>Amount Paid:  {{data.Amount_paid[0]}}</p>
     <p>Court Fee: {{data.Court_fee[0]}}</p>
     <p>Pay Due Date: {{data.Pay_due_date[0]}}</p>
     <p>Associated Crime: {{data.Crime_ID[0]}}</p>
-    <p>Crime Description:{{code.crime_description[0]}} </p>
+    <p>Crime Description:{{code.code_description[0]}} </p>
     
     <label for="yes-no-checkbox">Charge Status</label>
     <input type="checkbox" id="yes-no-checkbox" {% if data.Charge_status[0] == "PD" %}checked{% endif %} name="yes-no-checkbox" disabled>
