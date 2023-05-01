@@ -11,7 +11,6 @@ body {
   /* Header styles */
   h1 {
     font-size: 36px;
-    text-align: center;
     margin-top: 30px;
   }
   
@@ -61,56 +60,7 @@ body {
     color: #777;
   }
   
-  /* Style the "Jail Period" checkbox */
-  input[type="checkbox"][name="yes-no-checkbox"]:nth-of-type(1) + label:before {
-    content: "";
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    margin-right: 5px;
-    background-color: #fff;
-    border: 2px solid #000;
-    border-radius: 3px;
-    vertical-align: middle;
-  }
-  
-  input[type="checkbox"][name="yes-no-checkbox"]:nth-of-type(1):checked + label:before {
-    background-color: #000;
-  }
-  
-  /* Style the "House Arrest" checkbox */
-  input[type="checkbox"][name="yes-no-checkbox"]:nth-of-type(2) + label:before {
-    content: "";
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    margin-right: 5px;
-    background-color: #fff;
-    border: 2px solid #000;
-    border-radius: 3px;
-    vertical-align: middle;
-  }
-  
-  input[type="checkbox"][name="yes-no-checkbox"]:nth-of-type(2):checked + label:before {
-    background-color: #000;
-  }
-  
-  /* Style the "Probation" checkbox */
-  input[type="checkbox"][name="yes-no-checkbox"]:nth-of-type(3) + label:before {
-    content: "";
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    margin-right: 5px;
-    background-color: #fff;
-    border: 2px solid #000;
-    border-radius: 3px;
-    vertical-align: middle;
-  }
-  
-  input[type="checkbox"][name="yes-no-checkbox"]:nth-of-type(3):checked + label:before {
-    background-color: #000;
-  }
+
   a.logout {
     display: inline-block;
     padding: 10px 20px;

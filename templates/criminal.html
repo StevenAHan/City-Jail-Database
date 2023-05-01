@@ -59,18 +59,19 @@
           <option>{{ sentence[1][0] }}</option>
           {% endfor %}
         </select>
+        <label for="my-dropdown3">Aliases</label>
+        <select id="my-dropdown3" name="dropdown" style="margin-right:10px;">
+          {% for alias in aliases.iterrows() %}
+            <option>{{ alias[1][2] }}</option>
+          {% endfor %}
+        </select>
         {% if power == "M" %}
         <a href="/criminals/{{data.Criminal_ID[0]}}/addalias">Add</a>
         <form action="/criminals/{{data.Criminal_ID[0]}}" method="POST">
-          <input type="submit" value="Delete">
+          <input class = "delete" type="submit" value="Delete">
         </form>
         {% endif %}
-          <label for="my-dropdown3">Aliases</label>
-          <select id="my-dropdown3" name="dropdown" style="margin-right:10px;">
-            {% for alias in aliases.iterrows() %}
-              <option>{{ alias[1][2] }}</option>
-            {% endfor %}
-          </select>
+
       </div>
     </div>
   </body>
