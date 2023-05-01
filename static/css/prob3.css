@@ -8,7 +8,11 @@
     font-size: 18px;
     margin: 0;
   }
-  
+  .logout{
+    top:10px;
+    right: 10px;
+
+  }
   label {
     display: block;
     margin-bottom: 10px;
