@@ -14,7 +14,7 @@
     <p>Associated Criminal: {{data.Criminal_ID[0]}}</p>
     <p>Start Date: {{data.Start_date[0]}}</p>
     <p>Violations: {{data.Violations[0]}}  </p>
-    <p>End Date:  {{data.End_date}}</p>
+    <p>End Date:  {{data.End_date[0]}}</p>
     <p>Associated Probation Officer: {{data.Prob_ID[0]}}</p>
     <label for="yes-no-checkbox">Sentence Type</label>
     <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" disabled {% if data.Type[0] == "J" %}checked{% endif %}>
