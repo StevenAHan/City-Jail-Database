@@ -72,7 +72,6 @@ def removeAlias(criminial_id, alias):
 
 def addAlias(criminal_id, alias):
     alias_ID = runStatement(f"SELECT alias_id FROM alias")["alias_id"].max()
-    print(f'INSERT INTO Alias VALUES({alias_ID + 1},{criminal_id},"{alias}")')
     runStatement(f'INSERT INTO Alias VALUES({alias_ID + 1},{criminal_id},"{alias}")')
 
 def changeCriminalName(criminal_id, newFirst, newLast):
@@ -183,7 +182,6 @@ def search():
             filteredResults = runStatement(f"SELECT * FROM {searchTypeDivided[0]} WHERE {searchTypeDivided[1]} LIKE '{search}%'")
 
         for index, filteredResult in filteredResults.iterrows():
-            print(filteredResult)
             if(searchTypeDivided[1][len(searchTypeDivided[1]) - 1] == "d"):
                 if(str(filteredResult[0]) != ""):
                     results.append(f"<a href=/{str(searchTypeDivided[0])}/{str(filteredResult[0])}>" + str(filteredResult[0])
@@ -194,7 +192,6 @@ def search():
                            + "</a>" + "<br>")
         results = " ".join(results)
 
-        print(results)
     return render_template("search.html", results=results, searchType=searchTypeDivided[0])
 
 #to logout
@@ -219,7 +216,6 @@ def changeCrimFirstPage(id):
         return redirect("/")
     if request.method == "POST":
         newFirst = request.form.get('first')
-        print(newFirst)
         runStatement(f"UPDATE criminals SET First='{newFirst}' WHERE criminal_id='{id}'")
         return redirect(f"/criminals/{id}")
     return render_template("criminal_change_first.html", id=id)
