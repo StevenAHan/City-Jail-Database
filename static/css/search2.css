@@ -22,7 +22,12 @@ body {
     text-align: center;
     
   }
-
+/* Logout button styles */
+.logout {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
   table {
     border-collapse: collapse;
     margin-top: 30px;
