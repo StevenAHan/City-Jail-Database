@@ -311,7 +311,7 @@ def addOfficer():
     if current_user.get_power() == "V":
         return redirect("/")
     if request.method == "POST":
-        officer_id = runStatement(f"SELECT officer_id FROM officers")["Officer_ID"].max() + 1
+        officer_id = runStatement(f"SELECT officer_id FROM officers")["officer_id"].max() + 1
         first = request.form.get('first')
         last = request.form.get('last')
         precinct = request.form.get('precinct')
@@ -328,7 +328,7 @@ def addProbOfficer():
     if current_user.get_power() == "V":
         return redirect("/")
     if request.method == "POST":
-        prob_id = runStatement(f"SELECT prob_id FROM prob_officer")["Prob_ID"].max() + 1
+        prob_id = runStatement(f"SELECT prob_id FROM prob_officer")["prob_id"].max() + 1
         first = request.form.get('first')
         last = request.form.get('last')
         addr = request.form.get('address')
