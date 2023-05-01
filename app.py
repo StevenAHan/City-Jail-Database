@@ -204,35 +204,51 @@ def logout():
 
 @app.route("/criminals/<string:criminal_id>/removealias/<string:alias>")
 def deleteAlias(criminal_id, alias):
+    if current_user.get_power() == "V":
+        return redirect("/")
     removeAlias(criminal_id, alias)
     return redirect(f"/criminal/{criminal_id}")
 
 @app.route("/criminals/<string:id>/editfirst/<string:new_first>")
 def changeCrimFirst(id, new_first):
+    if current_user.get_power() == "V":
+        return redirect("/")
     runStatement(f'UPDATE criminals SET First="{new_first}" WHERE Criminal_ID="{id}"')
 
 @app.route("/officers/<string:id>/editfirst/<string:new_first>")
 def changeOffFirst(id, new_first):
+    if current_user.get_power() == "V":
+        return redirect("/")
     runStatement(f'UPDATE criminals SET First="{new_first}" WHERE Officer_ID="{id}"')
 
 @app.route("/prob_officer/<string:id>/editfirst/<string:new_first>")
 def changeProbOffFirst(id, new_first):
+    if current_user.get_power() == "V":
+        return redirect("/")
     runStatement(f'UPDATE criminals SET First="{new_first}" WHERE Prob_ID="{id}"')
 
 @app.route("/criminals/<string:id>/editlast/<string:new_last>")
 def changeCrimLast(id, new_last):
+    if current_user.get_power() == "V":
+        return redirect("/")
     runStatement(f'UPDATE criminals SET Last="{new_last}" WHERE Criminal_ID="{id}"')
 
 @app.route("/officers/<string:id>/editlast/<string:new_last>")
 def changeOffLast(id, new_last):
+    if current_user.get_power() == "V":
+        return redirect("/")
     runStatement(f'UPDATE criminals SET Last="{new_last}" WHERE Officer_ID="{id}"')
 
 @app.route("/prob_officer/<string:id>/editlast/<string:new_last>")
 def changeProbOffLast(id, new_last):
+    if current_user.get_power() == "V":
+        return redirect("/")
     runStatement(f'UPDATE criminals SET Last="{new_last}" WHERE Prob_ID="{id}"')
 
 @app.route("/criminals/<string:criminal_id>/addalias", methods=["GET", "POST"])
 def addAliasPage(criminal_id):
+    if current_user.get_power() == "V":
+        return redirect("/")
     if request.method == "POST":
         newAlias = request.form.get('alias')
         addAlias(criminal_id, newAlias)
