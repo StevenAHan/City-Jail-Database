@@ -10,8 +10,11 @@
     <div class="container">
       <div>
         <a href="/home"><img src="{{ url_for('static', filename='images/home.png') }}" alt="Home"></a>
+        {% if power == "M" %}
         <a href="/criminals/add">Add Criminal</a>
         <a href="/criminals/delete/{{data.Criminal_ID[0]}}">Delete Criminal</a>
+      {% endif %}
+        
 
         <h1>Criminals</h1>
         <p class="text">Criminal ID: {{data.Criminal_ID[0]}}</p>
