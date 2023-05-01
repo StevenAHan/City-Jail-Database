@@ -318,7 +318,7 @@ def addOfficer():
         badge = request.form.get('badge')
         phone = request.form.get('phone')
         status = request.form.get('status')
-        runStatement(f'''INSERT INTO Officers VALUES({officer_id},"{last}","{first}","{precinct}",{badge}","{phone}","{status}");''')
+        runStatement(f'''INSERT INTO Officers VALUES({officer_id},"{last}","{first}","{precinct}",{badge},{phone},"{status}");''')
         return redirect(f"/home")
     return render_template("add_officer.html")
 
@@ -338,7 +338,7 @@ def addProbOfficer():
         phone = request.form.get('phone') 
         email = request.form.get("email")
         status = request.form.get("status")
-        runStatement(f'''INSERT INTO Prob_officer VALUES({prob_id},"{last}","{first}","{addr}","{city}","{state}","{zip}","{phone}","{email}","{status}");''')
+        runStatement(f'''INSERT INTO Prob_officer VALUES({prob_id},"{last}","{first}","{addr}","{city}","{state}",{zip},{phone},"{email}","{status}");''')
         return redirect(f"/home")
     return render_template("add_prob_officer.html")
 
