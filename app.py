@@ -303,11 +303,11 @@ def addCriminal():
         pstat = request.form.get('pstat') 
         runStatement(f'''INSERT INTO Criminals VALUES({crim_id},"{last}","{first}","{addr}","{city}","{state}","{zip}","{phone}","{vstat}","{pstat}");''')
         return redirect(f"/home")
-    return render_template("add_crime.html")
+    return render_template("add_criminal.html")
 
 @app.route("/officers/add", methods=["GET", "POST"])
 @login_required
-def addCriminal():
+def addOfficer():
     if current_user.get_power() == "V":
         return redirect("/")
     if request.method == "POST":
@@ -323,7 +323,7 @@ def addCriminal():
         pstat = request.form.get('pstat') 
         runStatement(f'''INSERT INTO Criminals VALUES({crim_id},"{last}","{first}","{addr}","{city}","{state}","{zip}","{phone}","{vstat}","{pstat}");''')
         return redirect(f"/home")
-    return render_template("add_crime.html")
+    return render_template("add_officer.html")
 
     
 if __name__ == "__main__":
