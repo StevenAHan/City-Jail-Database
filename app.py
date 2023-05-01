@@ -72,7 +72,6 @@ def removeAlias(criminial_id, alias):
 
 def addAlias(criminal_id, alias):
     alias_ID = runStatement(f"SELECT alias_id FROM alias")["alias_id"].max()
-    print(alias_ID)
     print(f'INSERT INTO Alias VALUES({alias_ID + 1},{criminal_id},"{alias}")')
     runStatement(f'INSERT INTO Alias VALUES({alias_ID + 1},{criminal_id},"{alias}")')
 
@@ -269,6 +268,22 @@ def payFine(charge_id):
         return redirect(f"/crime_charges/{charge_id}")
     return render_template("pay_fine.html", id=charge_id)
 
+@app.route("/crimes/add", methods=["GET", "POST"])
+@login_required
+def payFine(charge_id):
+    if current_user.get_power() == "V":
+        return redirect("/")
+    if request.method == "POST":
+        crime_id = runStatement(f"SELECT crime_id FROM crimes")["crime_id"].max() + 1
+        crimID = request.form.get('criminal_id')
+        classification = request.form.get('classification')
+        date_charged = request.form.get('date_charged')
+        status = request.form.get('status')
+        hearing_date = request.form.get('hearing_date') 
+        runStatement(f'''INSERT INTO Crimes (Crime_ID,Criminal_ID,Classification,Date_charged,Status,Hearing_date) 
+                     VALUES({crime_id},{crimID},'{classification}','{date_charged}',"{status}",'{hearing_date}');''')
+        return redirect(f"/crime_charges/{charge_id}")
+    return render_template("add_crime.html")
 
     
 if __name__ == "__main__":

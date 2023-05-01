@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %} 
+<h1>Add A New Crime:</h1>
+<form action="/crimes/add" method="POST">
+    <label for="input">Associated Criminal ID:</label>
+    <input type="text" name="criminal_ID">
+    <label for="input">Classification:</label>
+    <input type="text" name="classification">
+    <label for="input">Date Charged (yyyy/mm/dd):</label>
+    <input type="text" name="date_charged">
+    <label for="input">Status:</label>
+    <input type="text" name="status">
+    <label for="input">Hearing Date (yyyy/mm/dd):</label>
+    <input type="text" name="hearing_date">
+    <input type="submit">
+</form>
+{% endblock %}
