@@ -12,15 +12,9 @@
     <p>Fine Amount: {{data.Fine_amount[0]}}</p>
     <p>Amount Paid:  {{data.Amount_paid[0]}}</p>
     <p>Court Fee: {{data.Court_fee[0]}}</p>
-    <p>Pay Due Date: {{data.Pay_due_date}}</p>
-    <p>Associated Crime: {{data.Crime_ID}}</p>
-    <p>Crime Codes: </p>
-    <label for="my-dropdown">Codes</label>
-    <select id="my-dropdown" name="my-dropdown">
-      <option value="option1">Option 1</option>
-      <option value="option2">Option 2</option>
-      <option value="option3">Option 3</option>
-    </select>
+    <p>Pay Due Date: {{data.Pay_due_date[0]}}</p>
+    <p>Associated Crime: {{data.Crime_ID[0]}}</p>
+    <p>Crime Description:{{code.crime_description[0]}} </p>
     
     <label for="yes-no-checkbox">Charge Status</label>
     <input type="checkbox" id="yes-no-checkbox" {% if data.Charge_status[0] == "PD" %}checked{% endif %} name="yes-no-checkbox" disabled>
