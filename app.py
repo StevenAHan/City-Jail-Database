@@ -211,41 +211,37 @@ def deleteAlias(criminal_id, alias):
     removeAlias(criminal_id, alias)
     return redirect(f"/criminal/{criminal_id}")
 
-@app.route("/criminals/<string:id>/editfirst/<string:new_first>")
-def changeCrimFirst(id, new_first):
+@app.route("/criminals/<string:id>/editfirst/", methods=["GET", "POST"])
+def changeCrimFirstPage(id):
     if current_user.get_power() == "V":
         return redirect("/")
-    runStatement(f'UPDATE criminals SET First="{new_first}" WHERE Criminal_ID="{id}"')
+    if request.method == "POST":
+        newFirst = request.form.get('first')
+        print(newFirst)
+        runStatement(f"UPDATE criminals SET First='{newFirst}' WHERE criminal_id='{id}'")
+        return redirect(f"/criminals/{id}")
+    return render_template("criminal_change_first.html", id=id)
 
-@app.route("/officers/<string:id>/editfirst/<string:new_first>")
-def changeOffFirst(id, new_first):
+@app.route("/officers/<string:id>/editfirst/", methods=["GET", "POST"])
+def changeOfficerFirstPage(id):
     if current_user.get_power() == "V":
         return redirect("/")
-    runStatement(f'UPDATE criminals SET First="{new_first}" WHERE Officer_ID="{id}"')
+    if request.method == "POST":
+        newFirst = request.form.get('first')
+        runStatement(f"UPDATE officers SET First='{newFirst}' WHERE officer_id='{id}'")
+        return redirect(f"/officers/{id}")
+    return render_template("officer_change_first.html", id=id)
 
-@app.route("/prob_officer/<string:id>/editfirst/<string:new_first>")
-def changeProbOffFirst(id, new_first):
+@app.route("/prob_officer/<string:id>/editfirst/", methods=["GET", "POST"])
+def changeProbOfficerFirstPage(id):
     if current_user.get_power() == "V":
         return redirect("/")
-    runStatement(f'UPDATE criminals SET First="{new_first}" WHERE Prob_ID="{id}"')
+    if request.method == "POST":
+        newFirst = request.form.get('first')
+        runStatement(f"UPDATE prob_officer SET First='{newFirst}' WHERE prob_id='{id}'")
+        return redirect(f"/prob_officer/{id}")
+    return render_template("prob_officer_change_first.html", id=id)
 
-@app.route("/criminals/<string:id>/editlast/<string:new_last>")
-def changeCrimLast(id, new_last):
-    if current_user.get_power() == "V":
-        return redirect("/")
-    runStatement(f'UPDATE criminals SET Last="{new_last}" WHERE Criminal_ID="{id}"')
-
-@app.route("/officers/<string:id>/editlast/<string:new_last>")
-def changeOffLast(id, new_last):
-    if current_user.get_power() == "V":
-        return redirect("/")
-    runStatement(f'UPDATE criminals SET Last="{new_last}" WHERE Officer_ID="{id}"')
-
-@app.route("/prob_officer/<string:id>/editlast/<string:new_last>")
-def changeProbOffLast(id, new_last):
-    if current_user.get_power() == "V":
-        return redirect("/")
-    runStatement(f'UPDATE criminals SET Last="{new_last}" WHERE Prob_ID="{id}"')
 
 @app.route("/criminals/<string:criminal_id>/addalias", methods=["GET", "POST"])
 def addAliasPage(criminal_id):

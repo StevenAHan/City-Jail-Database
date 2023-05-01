@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %} 
+<h1>Change Criminal's First Name:</h1>
+<form action="/prob_officer/{{id}}/editfirst" method="POST">
+    <label for="input">New First Name:</label>
+    <input type="text" name="first">
+    <input type="submit">
+</form>
+{% endblock %}
