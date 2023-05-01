@@ -12,7 +12,9 @@
     <h1>Crime Charges</h1>
     <p>Charge ID: {{data.Charge_ID[0]}}</p>
     <p>Fine Amount: {{data.Fine_amount[0]}}</p>
+    {% if power == "M" %}
     <a href="/payfine/{{data.Charge_ID[0]}}">Pay Fine</a>
+    {% endif %}
     <p>Amount Paid:  {{data.Amount_paid[0]}}</p>
     <p>Court Fee: {{data.Court_fee[0]}}</p>
     <p>Pay Due Date: {{data.Pay_due_date[0]}}</p>
