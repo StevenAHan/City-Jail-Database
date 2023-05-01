@@ -311,20 +311,36 @@ def addOfficer():
     if current_user.get_power() == "V":
         return redirect("/")
     if request.method == "POST":
-        crim_id = runStatement(f"SELECT criminal_id FROM criminals")["criminal_id"].max() + 1
+        officer_id = runStatement(f"SELECT officer_id FROM officers")["Officer_ID"].max() + 1
         first = request.form.get('first')
         last = request.form.get('last')
         precinct = request.form.get('address')
         badge = request.form.get('city')
-        phone = request.form.get('state') 
-        status = request.form.get('zip') 
-        phone = request.form.get('phone') 
-        vstat = request.form.get('vstat') 
-        pstat = request.form.get('pstat') 
-        runStatement(f'''INSERT INTO Criminals VALUES({crim_id},"{last}","{first}","{addr}","{city}","{state}","{zip}","{phone}","{vstat}","{pstat}");''')
+        phone = request.form.get('state')
+        status = request.form.get('zip')
+        runStatement(f'''INSERT INTO Officers VALUES({officer_id},"{last}","{first}","{precinct}",{badge}","{phone}","{status}");''')
         return redirect(f"/home")
     return render_template("add_officer.html")
 
-    
+@app.route("/prob_officer/add", methods=["GET", "POST"])
+@login_required
+def addProbOfficer():
+    if current_user.get_power() == "V":
+        return redirect("/")
+    if request.method == "POST":
+        prob_id = runStatement(f"SELECT prob_id FROM prob_officer")["Prob_ID"].max() + 1
+        first = request.form.get('first')
+        last = request.form.get('last')
+        addr = request.form.get('address')
+        city = request.form.get('city')
+        state = request.form.get('state') 
+        zip = request.form.get('zip') 
+        phone = request.form.get('phone') 
+        email = request.form.get("email")
+        status = request.form.get("status")
+        runStatement(f'''INSERT INTO Prob_officer VALUES({prob_id},"{last}","{first}","{addr}","{city}","{state}","{zip}","{phone}","{email}","{status}");''')
+        return redirect(f"/home")
+    return render_template("add_prob_officer.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
