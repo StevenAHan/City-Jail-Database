@@ -174,9 +174,6 @@ def search():
         searchType = request.form["search-type"]
         searchTypeDivided = searchType.split(",")
         searchTypeDivided[1] = searchTypeDivided[1].capitalize()
-        # print(searchTypeDivided[1][-2:])
-        # if(searchTypeDivided[1][-2:] == "id"):
-        #     searchTypeDivided[1][-2:] = "ID"
         if(searchTypeDivided[1][len(searchTypeDivided[1]) - 1] == "d"):
             if(search != ""):
                 filteredResults = runStatement(f"SELECT * FROM {searchTypeDivided[0]} WHERE {searchTypeDivided[1]}={search}")
@@ -188,10 +185,12 @@ def search():
         for index, filteredResult in filteredResults.iterrows():
             print(filteredResult)
             if(searchTypeDivided[1][len(searchTypeDivided[1]) - 1] == "d"):
-                results.append(f"<a href=/{str(searchTypeDivided[0])}/{str(filteredResult[0])}>" + str(filteredResult[0])
+                if(str(filteredResult[0]) != ""):
+                    results.append(f"<a href=/{str(searchTypeDivided[0])}/{str(filteredResult[0])}>" + str(filteredResult[0])
                            + "<a>" + "<br>")
             else:
-                results.append(f"<a href=/{searchTypeDivided[0]}/{filteredResult[0]}>" + filteredResult[searchTypeDivided[1]]
+                if(filteredResult[searchTypeDivided[1]] != ""):
+                    results.append(f"<a href=/{searchTypeDivided[0]}/{filteredResult[0]}>" + filteredResult[searchTypeDivided[1]]
                            + "<a>" + "<br>")
         results = " ".join(results)
     return render_template("search.html", results=results, searchType=searchTypeDivided[0])
