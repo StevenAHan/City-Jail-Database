@@ -1,0 +1,80 @@
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #f7f7f7;
+  }
+  
+  /* Header styles */
+  a {
+    display: inline-block;
+    margin: 10px;
+  }
+  img {
+    height: 30px;
+    width: 30px;
+  }
+  
+  .logout {
+    float: right;
+  }
+  
+  /* Container styles */
+  .container {
+    margin: 50px auto;
+    width: 80%;
+    max-width: 800px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+  }
+  
+  /* Heading styles */
+  h1 {
+    font-size: 36px;
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+  
+  /* Officer info styles */
+  .officer-info {
+    margin-bottom: 30px;
+  }
+  .officer-id {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .officer-name {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .officer-phone {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .officer-badge {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .officer-precinct {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  /* Officer status styles */
+  .officer-status {
+    display: flex;
+    align-items: center;
+  }
+  .checkbox-label {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+  
