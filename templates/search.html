@@ -7,6 +7,8 @@
     <title>City Jail Database</title>
   </head>
     <body>
+      <a href="/home"><img src="{{ url_for('static', filename='images/home.png') }}" alt="Home"></a>
+      <a class = "logout" href="/logout">Logout</a>
       Who you are searching for: {{searchType}}
         <h1 style="text-align: center">Search Results:</h1>
         <div class  = 'search_r'>{{results|safe}}</div>

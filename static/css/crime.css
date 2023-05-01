@@ -1,0 +1,54 @@
+/* Set a background color for the body */
+body {
+    background-color: #f2f2f2;
+  }
+  
+  /* Style the header */
+  h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 1rem;
+  }
+  
+  /* Style the paragraphs */
+  p {
+    font-size: 1.2rem;
+    margin: 0.5rem;
+  }
+  
+  /* Style the dropdown */
+  label {
+    font-size: 1.2rem;
+    margin: 1rem;
+    display: block;
+  }
+  
+  select {
+    font-size: 1.2rem;
+    margin: 1rem;
+    padding: 0.5rem;
+  }
+  
+  /* Style the links */
+  a {
+    text-decoration: none;
+    color: #333;
+    margin: 1rem;
+  }
+  
+  /* Style the logout link */
+  .logout {
+    float: right;
+  }
+  
+  /* Style the home link */
+  img {
+    float: left;
+    margin: 1rem;
+  }
+  
+  /* Add a box shadow to the dropdown */
+  select:focus {
+    box-shadow: 0 0 5px #c4c4c4;
+    outline: none;
+  }

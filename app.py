@@ -154,7 +154,7 @@ def showCrimes(crime_id):
 def showCharges(charge_id):
     data = runStatement("SELECT * FROM crime_charges WHERE charge_id=" + charge_id)
     return render_template("crimeCharge.html", data=data, 
-                           code=runStatement(f"SELECT code_description FROM crime_codes JOIN crime_charges ON crime_codes.crime_code= crime_charges.crime_code WHERE crime_charges.crime_code=" + data.Crime_code[0]),
+                           code=runStatement(f"SELECT code_description FROM crime_codes JOIN crime_charges ON crime_codes.crime_code= crime_charges.crime_code WHERE crime_charges.crime_code=" + str(data.Crime_code[0])),
                            power=current_user.get_power())
 
 #Probation Officer Information
