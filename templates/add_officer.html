@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %} 
+<h1>Add A New Criminal:</h1>
+<form action="/officer/add" method="POST">
+    <label for="input">First Name:</label>
+    <input type="text" name="first" required>
+    <label for="input">Last Name:</label>
+    <input type="text" name="last" required>
+    <label for="input">Precinct:</label>
+    <input type="text" name="precinct" required>
+    <label for="input">Badge:</label>
+    <input type="text" name="badge" required>
+    <label for="input">Phone:</label>
+    <input type="text" name="phone" required>
+    <label for="input">Status (A or I):</label>
+    <input type="text" name="status" required>
+    <input type="submit">
+</form>
+{% endblock %}
