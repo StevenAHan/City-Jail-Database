@@ -16,7 +16,6 @@
     <p>Violations: {{data.Violations[0]}}  </p>
     <p>End Date:  {{data.End_date}}</p>
     <p>Associated Probation Officer: {{data.Prob_ID[0]}}</p>
-    <label for="my-dropdown">Associated Sentences</label>
     <label for="yes-no-checkbox">Sentence Type</label>
     <input type="checkbox" id="yes-no-checkbox" name="yes-no-checkbox" disabled {% if data.Type[0] == "J" %}checked{% endif %}>
     <label for="yes-no-checkbox" value="Active">Jail Period</label>
