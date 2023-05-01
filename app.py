@@ -270,20 +270,60 @@ def payFine(charge_id):
 
 @app.route("/crimes/add", methods=["GET", "POST"])
 @login_required
-def payFine(charge_id):
+def addCrime():
     if current_user.get_power() == "V":
         return redirect("/")
     if request.method == "POST":
         crime_id = runStatement(f"SELECT crime_id FROM crimes")["crime_id"].max() + 1
-        crimID = request.form.get('criminal_id')
+        crimID = request.form.get('criminal_ID')
         classification = request.form.get('classification')
         date_charged = request.form.get('date_charged')
         status = request.form.get('status')
         hearing_date = request.form.get('hearing_date') 
         runStatement(f'''INSERT INTO Crimes (Crime_ID,Criminal_ID,Classification,Date_charged,Status,Hearing_date) 
                      VALUES({crime_id},{crimID},'{classification}','{date_charged}',"{status}",'{hearing_date}');''')
-        return redirect(f"/crime_charges/{charge_id}")
+        return redirect(f"/home")
     return render_template("add_crime.html")
+
+@app.route("/criminals/add", methods=["GET", "POST"])
+@login_required
+def addCriminal():
+    if current_user.get_power() == "V":
+        return redirect("/")
+    if request.method == "POST":
+        crim_id = runStatement(f"SELECT criminal_id FROM criminals")["criminal_id"].max() + 1
+        first = request.form.get('first')
+        last = request.form.get('last')
+        addr = request.form.get('address')
+        city = request.form.get('city')
+        state = request.form.get('state') 
+        zip = request.form.get('zip') 
+        phone = request.form.get('phone') 
+        vstat = request.form.get('vstat') 
+        pstat = request.form.get('pstat') 
+        runStatement(f'''INSERT INTO Criminals VALUES({crim_id},"{last}","{first}","{addr}","{city}","{state}","{zip}","{phone}","{vstat}","{pstat}");''')
+        return redirect(f"/home")
+    return render_template("add_criminal.html")
+
+@app.route("/officers/add", methods=["GET", "POST"])
+@login_required
+def addOfficer():
+    if current_user.get_power() == "V":
+        return redirect("/")
+    if request.method == "POST":
+        crim_id = runStatement(f"SELECT criminal_id FROM criminals")["criminal_id"].max() + 1
+        first = request.form.get('first')
+        last = request.form.get('last')
+        precinct = request.form.get('address')
+        badge = request.form.get('city')
+        phone = request.form.get('state') 
+        status = request.form.get('zip') 
+        phone = request.form.get('phone') 
+        vstat = request.form.get('vstat') 
+        pstat = request.form.get('pstat') 
+        runStatement(f'''INSERT INTO Criminals VALUES({crim_id},"{last}","{first}","{addr}","{city}","{state}","{zip}","{phone}","{vstat}","{pstat}");''')
+        return redirect(f"/home")
+    return render_template("add_officer.html")
 
     
 if __name__ == "__main__":
