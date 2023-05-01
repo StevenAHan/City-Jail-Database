@@ -10,8 +10,10 @@
     <a href="/home"><img src="{{ url_for('static', filename='images/home.png') }}" alt="Home"></a>
     <a class = "logout" href="/logout">Logout</a>
     <h1>Crime Charges</h1>
+    <a href="/payfine/{{data.Charge_ID[0]}}">Delete Charge</a>
     <p>Charge ID: {{data.Charge_ID[0]}}</p>
     <p>Fine Amount: {{data.Fine_amount[0]}}</p>
+    <a href="/payfine/{{data.Charge_ID[0]}}">Pay Fine</a>
     <p>Amount Paid:  {{data.Amount_paid[0]}}</p>
     <p>Court Fee: {{data.Court_fee[0]}}</p>
     <p>Pay Due Date: {{data.Pay_due_date[0]}}</p>
