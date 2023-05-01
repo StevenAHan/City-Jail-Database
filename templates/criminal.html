@@ -10,7 +10,9 @@
     <div class="container">
       <div>
         <a href="/home"><img src="{{ url_for('static', filename='images/home.png') }}" alt="Home"></a>
-        <a href="/crimes/add">Add Crime</a>
+        <a href="/criminals/add">Add Criminal</a>
+        <a href="/criminals/delete/{{data.Criminal_ID[0]}}">Delete Criminal</a>
+
         <h1>Criminals</h1>
         <p class="text">Criminal ID: {{data.Criminal_ID[0]}}</p>
         <a href="/criminals/{{data.Criminal_ID[0]}}/editfirst">Change First Name</a>
