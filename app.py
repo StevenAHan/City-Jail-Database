@@ -314,10 +314,10 @@ def addOfficer():
         officer_id = runStatement(f"SELECT officer_id FROM officers")["Officer_ID"].max() + 1
         first = request.form.get('first')
         last = request.form.get('last')
-        precinct = request.form.get('address')
-        badge = request.form.get('city')
-        phone = request.form.get('state')
-        status = request.form.get('zip')
+        precinct = request.form.get('precinct')
+        badge = request.form.get('badge')
+        phone = request.form.get('phone')
+        status = request.form.get('status')
         runStatement(f'''INSERT INTO Officers VALUES({officer_id},"{last}","{first}","{precinct}",{badge}","{phone}","{status}");''')
         return redirect(f"/home")
     return render_template("add_officer.html")
@@ -341,6 +341,39 @@ def addProbOfficer():
         runStatement(f'''INSERT INTO Prob_officer VALUES({prob_id},"{last}","{first}","{addr}","{city}","{state}","{zip}","{phone}","{email}","{status}");''')
         return redirect(f"/home")
     return render_template("add_prob_officer.html")
+
+
+@app.route("/prob_officer/delete/<string:prob_id>")
+@login_required
+def deleteProbOfficer(prob_id):
+    if current_user.get_power() == "V":
+        return redirect("/")
+    runStatement(f'''DELETE FROM prob_officer WHERE prob_id={prob_id};''')
+    return redirect("/home")
+
+@app.route("/officers/delete/<string:id>")
+@login_required
+def deleteOfficer(id):
+    if current_user.get_power() == "V":
+        return redirect("/")
+    runStatement(f'''DELETE FROM officers WHERE officer_id={id};''')
+    return redirect("/home")
+
+@app.route("/criminals/delete/<string:id>")
+@login_required
+def deleteCriminal(id):
+    if current_user.get_power() == "V":
+        return redirect("/")
+    runStatement(f'''DELETE FROM criminals WHERE criminal_id={id};''')
+    return redirect("/home")
+
+@app.route("/crimes/delete/<string:id>")
+@login_required
+def deleteCrime(id):
+    if current_user.get_power() == "V":
+        return redirect("/")
+    runStatement(f'''DELETE FROM crimes WHERE crime_id={id};''')
+    return redirect("/home")
 
 if __name__ == "__main__":
     app.run(debug=True)

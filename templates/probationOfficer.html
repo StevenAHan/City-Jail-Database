@@ -9,6 +9,9 @@
   <body>
     <a href="/home"><img src="{{ url_for('static', filename='images/home.png') }}" alt="Home"></a>
     <a class = "logout" href="/logout">Logout</a>
+
+    <a href="/prob_officer/add">Add Probation Officer</a>
+    <a href="/criminals/delete/{{data.Prob_ID[0]}}">Delete Probation Officer</a>
     <h1>Probation Officers</h1>
     <p>Probation ID: {{data.Prob_ID[0]}}</p>
     <a href="/probationOfficer/{{data.Prob_ID[0]}}/editfirst">Change First Name</a>
